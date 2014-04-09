@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
+import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import spaceinvaders.utils.Utils;
 
 /**
  *
@@ -35,6 +39,27 @@ public class JanelaPrincipal extends JFrame {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.blue);
         g2d.drawRect(75, 75, 300, 200);
+        
+        
+        BufferedImage img = Utils.carregarImagem("src/assets/nave.png");
+        try {
+            //Gerando um numero aleatorio 0 ou 1
+            Double r = Math.random() * 10;
+            int x = (r.intValue() % 2);
+            
+            //separa os sprites e escolhe aleatoriamente um para mostrar
+            img = Utils.dividirImagem(img, 1, 2)[x];
+        } catch (Exception ex) {
+            Logger.getLogger(JanelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        g2d.drawImage(img, 120, 60, null);
+        
+        
+        //Recarrega a tela loucamente, só para teste
+        this.repaint();
     }
+    
+    
 
 }
