@@ -41,7 +41,7 @@ public class JanelaPrincipal extends JFrame {
         g2d.drawRect(75, 75, 300, 200);
         
         
-        BufferedImage img = Utils.carregarImagem("src/assets/nave.png");
+        BufferedImage img = Utils.carregarImagem("src/assets/nave1.png");
         try {
             //Gerando um numero aleatorio 0 ou 1
             Double r = Math.random() * 10;
