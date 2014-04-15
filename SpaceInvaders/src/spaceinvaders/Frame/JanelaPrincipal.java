@@ -55,7 +55,7 @@ public class JanelaPrincipal extends JFrame {
         
         g2d.drawImage(img, 120, 60, null);
         
-        //Magah pediu para atualizar
+        //Testando o commit
         //Recarrega a tela loucamente, só para teste
         this.repaint();
     }
