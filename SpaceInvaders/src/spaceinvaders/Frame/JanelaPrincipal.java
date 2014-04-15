@@ -57,6 +57,7 @@ public class JanelaPrincipal extends JFrame {
         
         //Testando o commit
         //Recarrega a tela loucamente, só para teste
+        //Outra alteração
         this.repaint();
     }
     
