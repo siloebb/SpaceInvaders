@@ -55,9 +55,10 @@ public class JanelaPrincipal extends JFrame {
         
         g2d.drawImage(img, 120, 60, null);
         
-        //Teste muito louco 
+        
         //Recarrega a tela loucamente, só para teste
         //Outra alteração
+        
         
         this.repaint();
     }
