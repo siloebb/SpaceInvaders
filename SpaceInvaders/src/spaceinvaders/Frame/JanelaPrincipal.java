@@ -2,31 +2,69 @@ package spaceinvaders.Frame;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.HeadlessException;
-import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import spaceinvaders.utils.Utils;
+import spaceinvaders.utils.sprite.Background;
+import spaceinvaders.utils.sprite.Sprite;
 
 /**
  *
  * @author Siloe
  */
-public class JanelaPrincipal extends JFrame {
+public class JanelaPrincipal extends JComponent {
+    
+    ArrayList<Background> backgroundList;
+    ArrayList<Sprite> spriteList;    
+    
+    private String tituloDoJogo = "Space Invaders";
 
     public JanelaPrincipal() throws HeadlessException {
-        super("Space Invaders");
+        //super("Space Invaders");        
+        backgroundList = new ArrayList<>();
+        spriteList = new ArrayList<>();
 
         this.setSize(800, 600);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBackground(Color.BLACK);
+        
+        
+        //Criando um Frame Pai, pois é necessário
+        JFrame frame = new JFrame(tituloDoJogo);        
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.add(this);
+    }
+    
+    public void adicionarBackground(Background background){
+        backgroundList.add(background);
+    }
+    
+    public void adicionarSprite(Sprite sprite){
+        spriteList.add(sprite);
     }
 
     @Override
     public void paint(Graphics g) {
-        //Here is how we used to draw a square with width
+        
+        if (backgroundList != null)
+        for (Background background : backgroundList) {
+            background.print(g);
+        }
+        
+        if(spriteList != null)
+        for (Sprite sprite : spriteList) {
+            sprite.print(g);
+        }
+        
+        this.repaint();
+        
+        
+        /*
+//Here is how we used to draw a square with width
         //of 200, height of 200, and starting at x=50, y=50.
         g.setColor(Color.red);
         g.drawRect(50, 50, 200, 200);
@@ -55,12 +93,10 @@ public class JanelaPrincipal extends JFrame {
         
         g2d.drawImage(img, 120, 60, null);
         
-        
+        //Magah pediu para atualizar de novo
         //Recarrega a tela loucamente, só para teste
-        //Outra alteração
+         */
         
-        
-        this.repaint();
     }
     
     
