@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spaceinvaders;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import spaceinvaders.Frame.JanelaPrincipal;
+import spaceinvaders.telas.JanelaPrincipal;
+import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.BackgroundImage;
-import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
  *
@@ -20,49 +16,61 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
 public class Jogo {
 
     JanelaPrincipal janela;
-    SpriteAnimated spNave;
+    boolean pause = false;
+    int keyPressed;
+
+    ArrayList<GameObject> listaGameObject;
 
     public Jogo() {
         iniciarJogo();
     }
 
     private void iniciarJogo() {
-        janela = new JanelaPrincipal();
+        listaGameObject = new ArrayList<>();
+        janela = new JanelaPrincipal(listaGameObject);
 
         BackgroundImage bg = new BackgroundImage("src/assets/background.jpg");
-        spNave = new SpriteAnimated();
+
         try {
-            spNave.carregarSprite("src/assets/nave1.png", 1, 2);
-            spNave.setX(30);
-            spNave.setY(40);
+            janela.adicionarBackground(bg);
         } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        janela.adicionarBackground(bg);
-        janela.adicionarSprite(spNave);
         janela.requestFocus();
 
-        //TODO FAzer de um jeito mas elegante
+        //Capturando entrada de botões
+        keyPressed = 0;
         janela.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ev) {
-                if(ev.getKeyCode() == KeyEvent.VK_LEFT){
-                    spNave.setX(spNave.getX() - 5);
-                }
-                if(ev.getKeyCode() == KeyEvent.VK_RIGHT){
-                    spNave.setX(spNave.getX() + 5);
-                }
+                Jogo.this.keyPressed = ev.getKeyCode();
+                
             }
         });
-        
+    }
+
+    public void addGameObject(GameObject object) {
+        listaGameObject.add(object);
+    }
+
+    public void removeGameObject(GameObject object) {
+        listaGameObject.remove(object);
+    }
+
+    /**
+     * O que acontece à cada frame
+     */
+    private void enterFrame() {
+        for (GameObject gameObject : listaGameObject) {
+            gameObject.update();
+        }
     }
 
     public void start() {
 
-        long delay = 33;
-        long inicio = 0;
-        inicio = System.currentTimeMillis();
+        long delay = 17;
+        long inicio = System.currentTimeMillis();
 
         //Para verificar qual o FPS que está rodando o jogo
         long delayFPS = 1000;
@@ -71,11 +79,15 @@ public class Jogo {
 
         //EnterFrame
         while (true) {
-            if ((System.currentTimeMillis() - inicio) > delay) {
-                janela.repaint();
+            if ((System.currentTimeMillis() - inicio) > delay && pause == false) {
+                //janela.repaint();
                 inicio = System.currentTimeMillis();
+                GameObject.keyPressed = 0;
+                GameObject.keyPressed = keyPressed;
+                enterFrame();
 
                 contadorFPS++;
+                keyPressed = 0;
             }
 
             //Mostrador do FPS
@@ -85,6 +97,14 @@ public class Jogo {
                 contadorFPS = 0;
             }
         }
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
     }
 
 }
