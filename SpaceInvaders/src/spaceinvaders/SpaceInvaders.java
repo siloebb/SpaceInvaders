@@ -1,6 +1,7 @@
 
 package spaceinvaders;
 
+import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.gameobjects.Nave;
