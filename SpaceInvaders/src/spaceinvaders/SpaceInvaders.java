@@ -4,6 +4,7 @@ package spaceinvaders;
 import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -36,7 +37,18 @@ public class SpaceInvaders {
         nave.setSprite(spNave);
         
         jogo.addGameObject(nave);
-        
+        Inimigo inimigo = new Inimigo();
+        SpriteAnimated spInimigo = new SpriteAnimated();
+        try {
+            spInimigo.carregarSprite("src/assets_800x600/alien3.png",1,4);
+            spInimigo.setX(10);
+            spInimigo.setY(20);
+            spInimigo.animate(0,3);
+        } catch (Exception ex) {
+            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        inimigo.setSprite(spInimigo);
+        jogo.addGameObject(inimigo);
         
         jogo.start();
     }
