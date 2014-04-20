@@ -19,6 +19,7 @@ public class SpriteAnimated extends Sprite{
     private int posicaoAtual=0;
     private int posicaoInicial=0;
     private int posicaoFinal=0;
+    
 
     public SpriteAnimated() {
     }

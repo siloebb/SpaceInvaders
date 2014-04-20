@@ -20,10 +20,10 @@ public class JanelaPrincipal extends JComponent {
 
     private String tituloDoJogo = "Space Invaders";
 
-    public JanelaPrincipal(ArrayList<GameObject> gameObjectList) throws HeadlessException {
-        //super("Space Invaders");        
-        backgroundList = new ArrayList<>();
+    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList) throws HeadlessException {
+        //super("Space Invaders");
         this.gameObjectList = gameObjectList;
+        this.backgroundList = backgroundList;
 
         this.setSize(800, 600);
         this.setVisible(true);
@@ -39,22 +39,21 @@ public class JanelaPrincipal extends JComponent {
         frame.add(this);
     }
 
-    public void adicionarBackground(Background background) throws Exception {
-        if (background != null) {
-            backgroundList.add(background);
-        }else{
-            throw new Exception("Background == null");
-        }
-    }
+//    public void adicionarBackground(Background background) throws Exception {
+//        if (background != null) {
+//            backgroundList.add(background);
+//        } else {
+//            throw new Exception("Background == null");
+//        }
+//    }
 
     /*public void adicionarSprite(Sprite sprite) throws Exception {
-        if (sprite != null) {
-            spriteList.add(sprite);
-        }else{
-            throw new Exception("Sprite == null");
-        }
-    }*/
-
+     if (sprite != null) {
+     spriteList.add(sprite);
+     }else{
+     throw new Exception("Sprite == null");
+     }
+     }*/
     @Override
     public void paint(Graphics g) {
 
@@ -66,8 +65,9 @@ public class JanelaPrincipal extends JComponent {
 
         if (gameObjectList != null) {
             for (GameObject go : gameObjectList) {
-                if(go.getSprite() != null)
-                go.getSprite().print(g);
+                if (go.getSprite() != null) {
+                    go.getSprite().print(g);
+                }
             }
         }
 

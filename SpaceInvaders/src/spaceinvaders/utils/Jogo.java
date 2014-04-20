@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.telas.JanelaPrincipal;
 import spaceinvaders.utils.GameObject;
+import spaceinvaders.utils.sprite.Background;
 import spaceinvaders.utils.sprite.BackgroundImage;
 
 /**
@@ -20,6 +21,7 @@ public class Jogo {
     int keyPressed;
 
     ArrayList<GameObject> listaGameObject;
+    ArrayList<Background> listaBackground;
 
     public Jogo() {
         iniciarJogo();
@@ -27,15 +29,8 @@ public class Jogo {
 
     private void iniciarJogo() {
         listaGameObject = new ArrayList<>();
-        janela = new JanelaPrincipal(listaGameObject);
-
-        BackgroundImage bg = new BackgroundImage("src/assets/background.jpg");
-
-        try {
-            janela.adicionarBackground(bg);
-        } catch (Exception ex) {
-            Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listaBackground = new ArrayList<>();
+        janela = new JanelaPrincipal(listaGameObject, listaBackground);
 
         janela.requestFocus();
 
@@ -56,6 +51,14 @@ public class Jogo {
 
     public void removeGameObject(GameObject object) {
         listaGameObject.remove(object);
+    }
+    
+    public void addBackground(Background background) throws Exception{
+        listaBackground.add(background);
+    }
+    
+    public void removeBackground(Background background) throws Exception{
+        listaBackground.remove(background);
     }
 
     /**
