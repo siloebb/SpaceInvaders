@@ -66,7 +66,7 @@ public class SpaceInvaders {
             spNave.carregarSprite("src/assets_800x600/nave.png", 1, 4);
             spNave.setX(30);
             spNave.setY(300);
-            spNave.animate(0, 3);
+            spNave.animate(0, 3, 15);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +80,7 @@ public class SpaceInvaders {
             spInimigo.carregarSprite("src/assets_800x600/alien3.png", 1, 4);
             spInimigo.setX(10);
             spInimigo.setY(20);
-            spInimigo.animate(0, 3);
+            spInimigo.animate(0, 3, 15);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }

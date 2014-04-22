@@ -67,7 +67,7 @@ public class JanelaPrincipal extends JComponent {
             }
         }
 
-        this.repaint();
+        //this.repaint();
     }
 
     public String getTituloDoJogo() {

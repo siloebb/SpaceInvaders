@@ -81,6 +81,7 @@ public class Jogo extends Thread{
      */
     private void enterFrame() {
         janela.requestFocus();
+        janela.repaint();
         
         for (GameObject gameObject : listaGameObject) {
             gameObject.update();
@@ -97,7 +98,6 @@ public class Jogo extends Thread{
         long inicioFPS = System.currentTimeMillis();
         int contadorFPS = 0;
 
-        System.out.println("PASSO 1");
         //EnterFrame
         while (true) {
             if ((System.currentTimeMillis() - inicio) > delay && pause == false) {
