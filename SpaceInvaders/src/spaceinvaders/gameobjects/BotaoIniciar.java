@@ -7,13 +7,8 @@
 package spaceinvaders.gameobjects;
 
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import spaceinvaders.SpaceInvaders;
 import spaceinvaders.utils.GameObject;
-import spaceinvaders.utils.Jogo;
-import spaceinvaders.utils.sprite.BackgroundImage;
-import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
  *
@@ -23,14 +18,15 @@ public class BotaoIniciar extends GameObject {
     SpaceInvaders spInvaders;
     
     public BotaoIniciar(SpaceInvaders spInvaders){
-        spInvaders= new SpaceInvaders();
+        this.spInvaders = spInvaders;
     }
 
     @Override
     public void update() {
-        if(keyPressed== KeyEvent.VK_ENTER){
+        if(keyPressed == KeyEvent.VK_ENTER){
+            System.out.println("Iniciando jogo");
             spInvaders.iniciarJogo();
-             
+            System.out.println("Jogo carregado");
         }
     }
     

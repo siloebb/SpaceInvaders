@@ -15,8 +15,10 @@ import spaceinvaders.utils.sprite.Background;
  */
 public class JanelaPrincipal extends JComponent {
 
-    ArrayList<Background> backgroundList;
-    ArrayList<GameObject> gameObjectList;
+    private ArrayList<Background> backgroundList;
+    private ArrayList<GameObject> gameObjectList;
+    private JFrame frame;
+    private static boolean frameNovo = true;
 
     private String tituloDoJogo = "Space Invaders";
 
@@ -30,7 +32,11 @@ public class JanelaPrincipal extends JComponent {
         this.setBackground(Color.BLACK);
 
         //Criando um Frame Pai, pois é necessário
-        JFrame frame = new JFrame(tituloDoJogo);
+        if (frameNovo == true) {
+            frame = new JFrame(tituloDoJogo);            
+        }
+        System.out.println("Iniciando nova tela");
+        
         frame.setSize(800, 600);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -39,21 +45,11 @@ public class JanelaPrincipal extends JComponent {
         frame.add(this);
     }
 
-//    public void adicionarBackground(Background background) throws Exception {
-//        if (background != null) {
-//            backgroundList.add(background);
-//        } else {
-//            throw new Exception("Background == null");
-//        }
-//    }
+    public void alterarLista(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList) {
+        this.gameObjectList = gameObjectList;
+        this.backgroundList = backgroundList;
+    }
 
-    /*public void adicionarSprite(Sprite sprite) throws Exception {
-     if (sprite != null) {
-     spriteList.add(sprite);
-     }else{
-     throw new Exception("Sprite == null");
-     }
-     }*/
     @Override
     public void paint(Graphics g) {
 

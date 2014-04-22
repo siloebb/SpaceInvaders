@@ -1,6 +1,5 @@
 package spaceinvaders;
 
-import java.awt.event.KeyEvent;
 import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +7,6 @@ import spaceinvaders.gameobjects.BotaoIniciar;
 import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.utils.GameObject;
-import static spaceinvaders.utils.GameObject.keyPressed;
 import spaceinvaders.utils.sprite.BackgroundImage;
 import spaceinvaders.utils.sprite.Sprite;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -22,49 +20,40 @@ public class SpaceInvaders {
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
-        sp.iniciarMenu();
+        sp.iniciarMenu(sp);
     }
 
-    
-    public void iniciarMenu() {
+    public void iniciarMenu(SpaceInvaders sp) {
         Jogo menuJogo = new Jogo();
-        
-        SpaceInvaders sp = new SpaceInvaders();
-      
+
         GameObject btIniciar = new BotaoIniciar(sp);
         Sprite spIniciar;
-        
+
         spIniciar = new Sprite();
-        try{
+        try {
             spIniciar.carregarSprite("src/assets_320x180/button.png");
             spIniciar.setX(300);
             spIniciar.setY(150);
-        } catch (Exception ex){
-             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
         btIniciar.setSprite(spIniciar);
-        
+
         menuJogo.addGameObject(btIniciar);
-        BackgroundImage bg = new BackgroundImage("src/assets/background.jpg");
+        BackgroundImage bg = new BackgroundImage("src/assets_800x600/background.png");
         try {
             menuJogo.addBackground(bg);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(keyPressed == KeyEvent.VK_ENTER){
         
-       
-        }
-        
+        menuJogo.start();
     }
-    
-    
-     /*Caso precise testar o inicio do jogo deixe o metodo aqui, qualquer coisa pode excluir 
-       O metodo tá implementado na classe BotaoIniciar*/
-    
+
+    /*Caso precise testar o inicio do jogo deixe o metodo aqui, qualquer coisa pode excluir 
+     O metodo tá implementado na classe BotaoIniciar*/
     public void iniciarJogo() {
         Jogo jogo = new Jogo();
 
@@ -74,10 +63,10 @@ public class SpaceInvaders {
         SpriteAnimated spNave;
         spNave = new SpriteAnimated();
         try {
-            spNave.carregarSprite("src/assets/nave1.png", 1, 2);
+            spNave.carregarSprite("src/assets_800x600/nave.png", 1, 4);
             spNave.setX(30);
             spNave.setY(300);
-            spNave.animate(0,1);
+            spNave.animate(0, 3);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,14 +87,15 @@ public class SpaceInvaders {
         inimigo.setSprite(spInimigo);
         jogo.addGameObject(inimigo);
 
-        BackgroundImage bg = new BackgroundImage("src/assets/background.jpg");
+        BackgroundImage bg = new BackgroundImage("src/assets_800x600/background.png");
         try {
             jogo.addBackground(bg);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         jogo.start();
+        
     }
 
 }
