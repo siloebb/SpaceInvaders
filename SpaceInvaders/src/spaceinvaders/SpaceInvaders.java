@@ -22,6 +22,7 @@ public class SpaceInvaders {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
         sp.iniciarMenu();
@@ -31,7 +32,9 @@ public class SpaceInvaders {
     public void iniciarMenu() {
         Jogo menuJogo = new Jogo();
         
-        GameObject btIniciar = new BotaoIniciar();
+        SpaceInvaders sp = new SpaceInvaders();
+      
+        GameObject btIniciar = new BotaoIniciar(sp);
         Sprite spIniciar;
         
         spIniciar = new Sprite();
@@ -62,7 +65,7 @@ public class SpaceInvaders {
      /*Caso precise testar o inicio do jogo deixe o metodo aqui, qualquer coisa pode excluir 
        O metodo tá implementado na classe BotaoIniciar*/
     
-    /*public void iniciarJogo() {
+    public void iniciarJogo() {
         Jogo jogo = new Jogo();
 
         GameObject nave = new Nave();
@@ -103,6 +106,6 @@ public class SpaceInvaders {
         }
 
         jogo.start();
-    }*/
+    }
 
 }
