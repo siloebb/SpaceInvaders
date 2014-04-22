@@ -14,7 +14,7 @@ public class Jogo extends Thread{
 
     private static JanelaPrincipal janela;
     private boolean pause = false;
-    private int keyPressed;
+    private int keyPressed = 0;
 
     private static ArrayList<GameObject> listaGameObject;
     private static ArrayList<Background> listaBackground;
@@ -42,11 +42,17 @@ public class Jogo extends Thread{
 
         if (ka == null) {
             ka = new KeyAdapter() {
+                
                 @Override
                 public void keyPressed(KeyEvent ev) {
                     Jogo.this.keyPressed = ev.getKeyCode();
-
                 }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                   Jogo.this.keyPressed = 0;
+                }
+                
             };
 
             janela.addKeyListener(ka);
@@ -97,12 +103,12 @@ public class Jogo extends Thread{
             if ((System.currentTimeMillis() - inicio) > delay && pause == false) {
                 //janela.repaint();
                 inicio = System.currentTimeMillis();
-                GameObject.keyPressed = 0;
+                //GameObject.keyPressed = 0;
                 GameObject.keyPressed = keyPressed;
                 enterFrame();
 
                 contadorFPS++;
-                keyPressed = 0;
+                //keyPressed = 0;
             }
 
             //Mostrador do FPS
