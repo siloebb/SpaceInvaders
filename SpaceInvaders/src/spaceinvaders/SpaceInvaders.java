@@ -3,6 +3,7 @@ package spaceinvaders;
 import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.gameobjects.BotaoAjuda;
 import spaceinvaders.gameobjects.BotaoIniciar;
 import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Nave;
@@ -29,9 +30,12 @@ public class SpaceInvaders {
         Jogo menuJogo = new Jogo();
 
         GameObject btIniciar = new BotaoIniciar(sp);
+        GameObject btAjuda = new BotaoAjuda();
         Sprite spIniciar;
-
+        Sprite spAjuda;
+        
         spIniciar = new Sprite();
+        spAjuda = new Sprite();
         try {
             spIniciar.carregarSprite("src/assets_320x180/button.png");
             spIniciar.setX(300);
@@ -42,12 +46,23 @@ public class SpaceInvaders {
         btIniciar.setSprite(spIniciar);
 
         menuJogo.addGameObject(btIniciar);
+        
         BackgroundImage bg = new BackgroundImage("src/assets_800x600/background.png");
         try {
             menuJogo.addBackground(bg);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            spAjuda.carregarSprite("src/assets_320x180/button.png");
+            spAjuda.setX(300);
+            spAjuda.setY(200);
+        } catch (Exception ex) {
+            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btAjuda.setSprite(spAjuda);
+        menuJogo.addGameObject(btAjuda);
         
         menuJogo.start();
     }
