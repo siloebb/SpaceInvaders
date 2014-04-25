@@ -67,8 +67,7 @@ public class SpaceInvaders {
         menuJogo.start();
     }
 
-    /*Caso precise testar o inicio do jogo deixe o metodo aqui, qualquer coisa pode excluir 
-     O metodo tá implementado na classe BotaoIniciar*/
+   
     public void iniciarJogo() {
         Jogo jogo = new Jogo();
 
