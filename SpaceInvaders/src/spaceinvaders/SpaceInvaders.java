@@ -37,7 +37,7 @@ public class SpaceInvaders {
         spIniciar = new Sprite();
         spAjuda = new Sprite();
         try {
-            spIniciar.carregarSprite("src/assets_320x180/button.png");
+            spIniciar.carregarSprite("src/assets_800x600/button.png");
             spIniciar.setX(300);
             spIniciar.setY(150);
         } catch (Exception ex) {
@@ -55,9 +55,9 @@ public class SpaceInvaders {
         }
         
         try {
-            spAjuda.carregarSprite("src/assets_320x180/button.png");
+            spAjuda.carregarSprite("src/assets_800x600/button2.png");
             spAjuda.setX(300);
-            spAjuda.setY(200);
+            spAjuda.setY(250);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
