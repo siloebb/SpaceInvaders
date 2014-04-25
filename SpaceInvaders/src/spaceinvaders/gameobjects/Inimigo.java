@@ -6,10 +6,17 @@
 
 package spaceinvaders.gameobjects;
 
+import spaceinvaders.utils.GameObject;
+
 /**
  *
  * @author Siloe
  */
-public class Inimigo {
+public class Inimigo extends GameObject{
+
+    @Override
+    public void update() {
+        this.setY(this.getY() + 2);
+    }
     
 }

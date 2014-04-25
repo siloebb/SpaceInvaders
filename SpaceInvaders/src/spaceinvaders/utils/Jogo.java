@@ -3,23 +3,23 @@ package spaceinvaders.utils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import spaceinvaders.telas.JanelaPrincipal;
-import spaceinvaders.utils.GameObject;
-import spaceinvaders.utils.sprite.BackgroundImage;
+import spaceinvaders.utils.sprite.Background;
 
 /**
  *
  * @author Siloe
  */
-public class Jogo {
+public class Jogo extends Thread{
 
-    JanelaPrincipal janela;
-    boolean pause = false;
-    int keyPressed;
+    private static JanelaPrincipal janela;
+    private boolean pause = false;
+    private int keyPressed = 0;
 
-    ArrayList<GameObject> listaGameObject;
+    private static ArrayList<GameObject> listaGameObject;
+    private static ArrayList<Background> listaBackground;
+
+    KeyAdapter ka;
 
     public Jogo() {
         iniciarJogo();
@@ -27,27 +27,37 @@ public class Jogo {
 
     private void iniciarJogo() {
         listaGameObject = new ArrayList<>();
-        janela = new JanelaPrincipal(listaGameObject);
-
-        BackgroundImage bg = new BackgroundImage("src/assets/background.jpg");
-
-        try {
-            janela.adicionarBackground(bg);
-        } catch (Exception ex) {
-            Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
+        listaBackground = new ArrayList<>();
+        
+        if(janela == null){
+            janela = new JanelaPrincipal(listaGameObject, listaBackground);
+        }else{
+            janela.alterarLista(listaGameObject, listaBackground);
         }
 
         janela.requestFocus();
 
         //Capturando entrada de botões
         keyPressed = 0;
-        janela.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ev) {
-                Jogo.this.keyPressed = ev.getKeyCode();
+
+        if (ka == null) {
+            ka = new KeyAdapter() {
                 
-            }
-        });
+                @Override
+                public void keyPressed(KeyEvent ev) {
+                    Jogo.this.keyPressed = ev.getKeyCode();
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                   Jogo.this.keyPressed = 0;
+                }
+                
+            };
+
+            janela.addKeyListener(ka);
+        }
+        
     }
 
     public void addGameObject(GameObject object) {
@@ -58,16 +68,27 @@ public class Jogo {
         listaGameObject.remove(object);
     }
 
+    public void addBackground(Background background) throws Exception {
+        listaBackground.add(background);
+    }
+
+    public void removeBackground(Background background) throws Exception {
+        listaBackground.remove(background);
+    }
+
     /**
      * O que acontece à cada frame
      */
     private void enterFrame() {
+        janela.requestFocus();
+        janela.repaint();
+        
         for (GameObject gameObject : listaGameObject) {
             gameObject.update();
         }
     }
 
-    public void start() {
+    public void startGame() {
 
         long delay = 17;
         long inicio = System.currentTimeMillis();
@@ -82,12 +103,12 @@ public class Jogo {
             if ((System.currentTimeMillis() - inicio) > delay && pause == false) {
                 //janela.repaint();
                 inicio = System.currentTimeMillis();
-                GameObject.keyPressed = 0;
+                //GameObject.keyPressed = 0;
                 GameObject.keyPressed = keyPressed;
                 enterFrame();
 
                 contadorFPS++;
-                keyPressed = 0;
+                //keyPressed = 0;
             }
 
             //Mostrador do FPS
@@ -98,6 +119,14 @@ public class Jogo {
             }
         }
     }
+
+    @Override
+    public void run() {
+        //super.run();
+        this.startGame();
+    }
+    
+    
 
     public boolean isPause() {
         return pause;
