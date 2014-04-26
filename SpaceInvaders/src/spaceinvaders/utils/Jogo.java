@@ -21,16 +21,17 @@ public class Jogo extends Thread{
 
     KeyAdapter ka;
 
-    public Jogo() {
-        iniciarJogo();
+    // o construtor passa a ter um parametro que será enviado a janela
+    public Jogo(int[] tamTela) {
+        iniciarJogo(tamTela);
     }
 
-    private void iniciarJogo() {
+    private void iniciarJogo(int[] tamTela) {
         listaGameObject = new ArrayList<>();
         listaBackground = new ArrayList<>();
         
         if(janela == null){
-            janela = new JanelaPrincipal(listaGameObject, listaBackground);
+            janela = new JanelaPrincipal(listaGameObject, listaBackground, tamTela); //janela tem mais um parametro
         }else{
             janela.alterarLista(listaGameObject, listaBackground);
         }

@@ -22,12 +22,12 @@ public class JanelaPrincipal extends JComponent {
 
     private String tituloDoJogo = "Space Invaders";
 
-    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList) throws HeadlessException {
+    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList, int[] tamTela) throws HeadlessException {
         //super("Space Invaders");
         this.gameObjectList = gameObjectList;
         this.backgroundList = backgroundList;
 
-        this.setSize(800, 600);
+        this.setSize(tamTela[0], tamTela[1]); //agora o tamanho é definido assim
         this.setVisible(true);
         this.setBackground(Color.BLACK);
 
@@ -37,7 +37,7 @@ public class JanelaPrincipal extends JComponent {
         }
         System.out.println("Iniciando nova tela");
         
-        frame.setSize(800, 600);
+        frame.setSize(tamTela[0], tamTela[1]);//agora o tamanho é definido assim
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
