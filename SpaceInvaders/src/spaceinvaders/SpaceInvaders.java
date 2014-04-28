@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.gameobjects.BotaoAjuda;
 import spaceinvaders.gameobjects.BotaoIniciar;
+import spaceinvaders.gameobjects.GeradorDeEventos;
 import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.telas.Tela1;
@@ -132,6 +133,10 @@ public class SpaceInvaders {
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        GeradorDeEventos ge = new GeradorDeEventos(resolucao, jogo);
+        
+        jogo.addGameObject(ge);
         
         jogo.start();
         

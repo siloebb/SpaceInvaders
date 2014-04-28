@@ -52,15 +52,22 @@ public class JanelaPrincipal extends JComponent {
 
     @Override
     public void paint(Graphics g) {
+        
+        //Clonar a lista eh necessária para evitar erros de concorrência
+        ArrayList<Background> backgroundListClone = new ArrayList<>();
+        backgroundListClone.addAll(backgroundList);
 
-        if (backgroundList != null) {
-            for (Background background : backgroundList) {
+        if (backgroundListClone != null) {
+            for (Background background : backgroundListClone) {
                 background.print(g);
             }
         }
+        
+        ArrayList<GameObject> gameObjectListClone = new ArrayList<>();
+        gameObjectListClone.addAll(gameObjectList);
 
-        if (gameObjectList != null) {
-            for (GameObject go : gameObjectList) {
+        if (gameObjectListClone != null) {
+            for (GameObject go : gameObjectListClone) {
                 if (go.getSprite() != null) {
                     go.getSprite().print(g);
                 }

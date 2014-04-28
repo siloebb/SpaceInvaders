@@ -6,10 +6,12 @@
 
 package spaceinvaders.gameobjects;
 
+import spaceinvaders.utils.GameObject;
+
 /**
  *
  * @author Siloe
  */
-public class TiroAmigo {
+public class TiroAmigo extends GameObject{
     
 }

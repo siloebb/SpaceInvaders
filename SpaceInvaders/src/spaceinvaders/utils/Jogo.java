@@ -84,7 +84,11 @@ public class Jogo extends Thread{
         janela.requestFocus();
         janela.repaint();
         
-        for (GameObject gameObject : listaGameObject) {
+        //Clonar a lista eh necessária para evitar erros de concorrência
+        ArrayList<GameObject> listaClone = new ArrayList<>();
+        listaClone.addAll(listaGameObject);
+        
+        for (GameObject gameObject : listaClone) {
             gameObject.update();
         }
     }
