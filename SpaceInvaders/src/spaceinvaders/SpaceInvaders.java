@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.gameobjects.BotaoAjuda;
 import spaceinvaders.gameobjects.BotaoIniciar;
+import spaceinvaders.gameobjects.BotaoSobre;
+import spaceinvaders.gameobjects.BotaoTitulo;
 import spaceinvaders.gameobjects.GeradorDeEventos;
 import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Nave;
@@ -56,11 +58,33 @@ public class SpaceInvaders {
 
         GameObject btIniciar = new BotaoIniciar(sp);
         GameObject btAjuda = new BotaoAjuda();
+        GameObject btSobre = new BotaoSobre();
+        GameObject btTitulo= new BotaoTitulo();
         Sprite spIniciar;
         Sprite spAjuda;
+        Sprite spSobre;
+        Sprite spTituloJogo;
         
         spIniciar = new Sprite();
         spAjuda = new Sprite();
+        spSobre = new Sprite();
+        spTituloJogo = new Sprite();
+        
+        
+        
+        
+        
+        try {
+            spTituloJogo.carregarSprite(resolucao.getCaminho()+"name.png");
+            spTituloJogo.setX(resolucao.getPosicaoTitulo()[0]);
+            spTituloJogo.setY(resolucao.getPosicaoTitulo()[1]);
+        } catch (Exception ex) {
+            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btTitulo.setSprite(spTituloJogo);
+        menuJogo.addGameObject(btTitulo);
+        
+        
         try {
             spIniciar.carregarSprite(resolucao.getCaminho()+"button.png"); //ver comentários da classe Resolucao
             spIniciar.setX(resolucao.getPosicaoBotoes()[0]);
@@ -69,7 +93,6 @@ public class SpaceInvaders {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
         btIniciar.setSprite(spIniciar);
-
         menuJogo.addGameObject(btIniciar);
         
        BackgroundImage bg = new BackgroundImage(resolucao.getCaminho() +"background.png");
@@ -89,6 +112,16 @@ public class SpaceInvaders {
         btAjuda.setSprite(spAjuda);
         menuJogo.addGameObject(btAjuda);
         
+        try {
+            spSobre.carregarSprite(resolucao.getCaminho()+"button3.png");
+            spSobre.setX(resolucao.getPosicaoBotoes()[0]);
+            spSobre.setY(resolucao.getPosicaoBotoes()[3]);
+        } catch (Exception ex) {
+            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btSobre.setSprite(spSobre);
+        menuJogo.addGameObject(btSobre);
+            
         menuJogo.start();
     }
 

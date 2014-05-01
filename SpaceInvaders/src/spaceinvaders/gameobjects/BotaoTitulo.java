@@ -6,24 +6,17 @@
 
 package spaceinvaders.gameobjects;
 
-import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 import spaceinvaders.utils.GameObject;
-import static spaceinvaders.utils.GameObject.keyPressed;
 
 /**
  *
  * @author Jéssica Magally
  */
-public class BotaoAjuda extends GameObject{
+public class BotaoTitulo extends GameObject {
 
     @Override
     public void update() {
         super.update(); //To change body of generated methods, choose Tools | Templates.
-        if(keyPressed == KeyEvent.VK_H){
-         System.out.println("Ajuda");
     }
     
-    
-}
 }
