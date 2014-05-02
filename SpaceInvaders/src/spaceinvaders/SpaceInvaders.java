@@ -7,6 +7,7 @@ import spaceinvaders.gameobjects.BotaoAjuda;
 import spaceinvaders.gameobjects.BotaoIniciar;
 import spaceinvaders.gameobjects.GeradorDeEventos;
 import spaceinvaders.gameobjects.Inimigo;
+import spaceinvaders.gameobjects.Life;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.telas.Tela1;
 import spaceinvaders.utils.GameObject;
@@ -24,7 +25,7 @@ public class SpaceInvaders {
      * @param args the command line arguments
      */
     
-    private   Resolucao resolucao;
+    private Resolucao resolucao;
     
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
@@ -137,6 +138,9 @@ public class SpaceInvaders {
         GeradorDeEventos ge = new GeradorDeEventos(resolucao, jogo);
         
         jogo.addGameObject(ge);
+        
+        Life life = new Life(resolucao);
+        jogo.addGameObject(life);
         
         jogo.start();
         
