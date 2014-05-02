@@ -1,14 +1,16 @@
 package spaceinvaders.gameobjects;
 
 import java.awt.event.KeyEvent;
+import spaceinvaders.listenner.ColisaoEvent;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.Sprite;
+import spaceinvaders.listenner.ColisaoListenner;
 
 /**
  *
  * @author Siloe
  */
-public class Nave extends GameObject {
+public class Nave extends GameObject implements ColisaoListenner{
 
     public Nave() {
         
@@ -53,6 +55,15 @@ public class Nave extends GameObject {
     @Override
     public int getY() {
         return sprite.getY();
+    }
+
+    @Override
+    public void colidiu(ColisaoEvent c) {
+        System.out.println("SUENNY DISSE Q BATEU!");
+    }
+    
+    public String getTag(){
+        return "nave";
     }
 
 }

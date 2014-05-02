@@ -10,9 +10,19 @@ public class GameObject {
 
     public static int keyPressed = 0;
     protected Sprite sprite;
-
+    public String tag;
+            
     public void update() {
 
+    }
+    
+    public int getHeight() {
+        return this.getSprite().getHeight();
+    }
+
+  
+    public int getWidth() {
+        return this.getSprite().getWidth();
     }
 
     public Sprite getSprite() {
@@ -38,5 +48,15 @@ public class GameObject {
     public int getY() {
         return sprite.getY();
     }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+   
+    
 
 }
