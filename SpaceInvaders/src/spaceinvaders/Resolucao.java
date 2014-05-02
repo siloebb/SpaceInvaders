@@ -58,13 +58,13 @@ public class Resolucao {
             tamanhoTela[0] = 320;
             tamanhoTela[1] = 200; //tá um pouco maior pq na definição é considerada as bordas da janela e não somenta a area do jogo
 
-            posicaoTitulo[0] = 50;
-            posicaoTitulo[1] = 50;
+            posicaoTitulo[0] = 25;
+            posicaoTitulo[1] = 5;
 
-            posicaoBotoes[0] = 100;
-            posicaoBotoes[1] = 100;
-            posicaoBotoes[2] = posicaoBotoes[1] + 20;
-            posicaoBotoes[3] = posicaoBotoes[2] + 20;
+            posicaoBotoes[0] = 90;
+            posicaoBotoes[1] = 90;
+            posicaoBotoes[2] = posicaoBotoes[1] + 25;
+            posicaoBotoes[3] = posicaoBotoes[2] + 25;
 
             posicaoNave[0] = 20;
             posicaoNave[1] = 120;
@@ -81,8 +81,8 @@ public class Resolucao {
             tamanhoTela[0] = 800;
             tamanhoTela[1] = 600;
 
-            posicaoTitulo[0] = 200;
-            posicaoTitulo[1] = 50;
+            posicaoTitulo[0] = 100;
+            posicaoTitulo[1] = 45;
 
             posicaoBotoes[0] = 270;
             posicaoBotoes[1] = 300;
