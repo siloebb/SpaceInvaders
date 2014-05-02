@@ -37,6 +37,7 @@ public class GeradorDeEventos extends GameObject {
         time++;
         if (time >= 60) { //60 frames == 1 segundo
             Inimigo inimigo = new Inimigo();
+            
             SpriteAnimated spInimigo = new SpriteAnimated();
             try {
                 int posi;
@@ -90,6 +91,7 @@ public class GeradorDeEventos extends GameObject {
             }
             inimigo.setSprite(spInimigo);
             jogo.addGameObject(inimigo);
+            jogo.addColisaoListener(inimigo);
             time = 0;
         }
     }

@@ -97,11 +97,12 @@ public class SpaceInvaders {
        Jogo jogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
 
 
-        GameObject nave = new Nave();
-
+        Nave nave = new Nave();
+        
         ///Adicionando nave
         SpriteAnimated spNave;
         spNave = new SpriteAnimated();
+        
         try {
            spNave.carregarSprite(resolucao.getCaminho() +"/nave.png", 1, 4);
             spNave.setX(resolucao.getPosicaoNave()[0]);
@@ -111,10 +112,12 @@ public class SpaceInvaders {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
         nave.setSprite(spNave);
-
+        
+        jogo.addColisaoListener(nave);
         jogo.addGameObject(nave);
+        
         //Adicionando inimigo
-        Inimigo inimigo = new Inimigo();
+      /*  Inimigo inimigo = new Inimigo();
         SpriteAnimated spInimigo = new SpriteAnimated();
         try {
             spInimigo.carregarSprite(resolucao.getCaminho() + "alien3.png", 1, 4);
@@ -125,7 +128,7 @@ public class SpaceInvaders {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
         inimigo.setSprite(spInimigo);
-        jogo.addGameObject(inimigo);
+        jogo.addGameObject(inimigo);*/
 
         BackgroundImage bg = new BackgroundImage(resolucao.getCaminho()+"background.png");
         try {

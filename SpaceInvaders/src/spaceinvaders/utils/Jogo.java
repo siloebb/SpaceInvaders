@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import spaceinvaders.telas.JanelaPrincipal;
 import spaceinvaders.utils.sprite.Background;
+import spaceinvaders.listenner.ColisaoListenner;
 
 /**
  *
@@ -15,6 +16,7 @@ public class Jogo extends Thread{
     private static JanelaPrincipal janela;
     private boolean pause = false;
     private int keyPressed = 0;
+    private Colisao colisao;
 
     private static ArrayList<GameObject> listaGameObject;
     private static ArrayList<Background> listaBackground;
@@ -29,6 +31,7 @@ public class Jogo extends Thread{
     private void iniciarJogo(int[] tamTela) {
         listaGameObject = new ArrayList<>();
         listaBackground = new ArrayList<>();
+        colisao = new Colisao();
         
         if(janela == null){
             janela = new JanelaPrincipal(listaGameObject, listaBackground, tamTela); //janela tem mais um parametro
@@ -77,7 +80,16 @@ public class Jogo extends Thread{
         listaBackground.remove(background);
     }
 
-    /**
+   
+    public synchronized void addColisaoListener(ColisaoListenner c){
+        colisao.addColisaoListener(c);
+    }
+    
+    public  synchronized void removeColisaoListener(ColisaoListenner c){
+        colisao.removeColisaoListener(c);
+    }
+    
+     /**
      * O que acontece à cada frame
      */
     private void enterFrame() {
@@ -91,6 +103,7 @@ public class Jogo extends Thread{
         for (GameObject gameObject : listaClone) {
             gameObject.update();
         }
+        colisao.verificarColisao();
     }
 
     public void startGame() {

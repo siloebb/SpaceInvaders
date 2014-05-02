@@ -45,4 +45,12 @@ public class Sprite implements Printable{
         g2d.drawImage(sprite, x, y, null);        
     }
 
+    public int getHeight() {
+        return sprite.getHeight();
+    }
+
+    public int getWidth() {
+        return sprite.getWidth();
+    }
+
 }
