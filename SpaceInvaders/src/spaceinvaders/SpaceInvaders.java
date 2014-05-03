@@ -8,7 +8,6 @@ import spaceinvaders.gameobjects.BotaoIniciar;
 import spaceinvaders.gameobjects.BotaoSobre;
 import spaceinvaders.gameobjects.BotaoTitulo;
 import spaceinvaders.gameobjects.GeradorDeEventos;
-import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Life;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.gameobjects.Parede;
@@ -72,10 +71,6 @@ public class SpaceInvaders {
         spSobre = new Sprite();
         spTituloJogo = new Sprite();
         
-        
-        
-        
-        
         try {
             spTituloJogo.carregarSprite(resolucao.getCaminho()+"name.png");
             spTituloJogo.setX(resolucao.getPosicaoTitulo()[0]);
@@ -132,7 +127,7 @@ public class SpaceInvaders {
        Jogo jogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
 
 
-        Nave nave = new Nave();
+        Nave nave = new Nave(jogo);
         
         ///Adicionando nave
         SpriteAnimated spNave;
@@ -150,20 +145,6 @@ public class SpaceInvaders {
         
         jogo.addColisaoListener(nave);
         jogo.addGameObject(nave);
-        
-        //Adicionando inimigo
-      /*  Inimigo inimigo = new Inimigo();
-        SpriteAnimated spInimigo = new SpriteAnimated();
-        try {
-            spInimigo.carregarSprite(resolucao.getCaminho() + "alien3.png", 1, 4);
-            spInimigo.setX(resolucao.getPosicaoInimigo()[0]);
-            spInimigo.setY(resolucao.getPosicaoInimigo()[8]);
-            spInimigo.animate(0, 3, 15);
-        } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        inimigo.setSprite(spInimigo);
-        jogo.addGameObject(inimigo);*/
 
         BackgroundImage bg = new BackgroundImage(resolucao.getCaminho()+"background.png");
         try {
@@ -176,9 +157,11 @@ public class SpaceInvaders {
         
         jogo.addGameObject(ge);
         
+        //Criando barra de life
         Life life = new Life(resolucao);
         jogo.addGameObject(life);
         
+        //Cirando Paredes invisivéis para colisão
         Parede parede = new Parede();
         Parede paredeDireita = new Parede();
         
@@ -197,6 +180,9 @@ public class SpaceInvaders {
         paredeDireita.setTag("paredeDaDireita");
         jogo.addGameObject(paredeDireita);
         jogo.addColisaoListener(paredeDireita);
+        
+        
+        //Iniciando Jogo
         jogo.start();
         
     }

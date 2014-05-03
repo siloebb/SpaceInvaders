@@ -3,9 +3,10 @@ package spaceinvaders.utils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import spaceinvaders.telas.JanelaPrincipal;
 import spaceinvaders.utils.sprite.Background;
-import spaceinvaders.listenner.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListenner;
 
 /**
  *
@@ -96,6 +97,7 @@ public class Jogo extends Thread{
         janela.requestFocus();
         janela.repaint();
         
+
         //Clonar a lista eh necessária para evitar erros de concorrência
         ArrayList<GameObject> listaClone = new ArrayList<>();
         listaClone.addAll(listaGameObject);
@@ -104,6 +106,19 @@ public class Jogo extends Thread{
             gameObject.update();
         }
         colisao.verificarColisao();
+        
+        //Varre para ver se tem algum objeto para destruir
+        for (GameObject gameObject : listaClone) {
+            if(gameObject.isFlagSelfDestroy()){
+                listaGameObject.remove(gameObject);
+                try{
+                    //ele tenta tirar do colisionador
+                    colisao.removeColisaoListener((ColisaoListenner)gameObject);
+                }catch(Exception e){
+                    //Não faz nada
+                }
+            }
+        }
     }
 
     public void startGame() {

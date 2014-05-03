@@ -6,8 +6,8 @@
 
 package spaceinvaders.gameobjects;
 
-import spaceinvaders.listenner.ColisaoEvent;
-import spaceinvaders.listenner.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoEvent;
+import spaceinvaders.listenners.ColisaoListenner;
 import spaceinvaders.utils.GameObject;
 
 /**

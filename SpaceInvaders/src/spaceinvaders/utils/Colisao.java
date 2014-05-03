@@ -8,8 +8,8 @@ package spaceinvaders.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import spaceinvaders.gameobjects.Nave;
-import spaceinvaders.listenner.ColisaoEvent;
-import spaceinvaders.listenner.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoEvent;
+import spaceinvaders.listenners.ColisaoListenner;
 
 /**
  *
@@ -17,38 +17,46 @@ import spaceinvaders.listenner.ColisaoListenner;
  */
 public class Colisao {
 
-    Collection<ColisaoListenner> colisao = new ArrayList<ColisaoListenner>();
+    Collection<ColisaoListenner> listaColisao = new ArrayList<>();
 
     public synchronized void addColisaoListener(ColisaoListenner c) {
-        if (!colisao.contains(c)) {
-            colisao.add(c);
+        if (!listaColisao.contains(c)) {
+            listaColisao.add(c);
         }
     }
 
     public synchronized void removeColisaoListener(ColisaoListenner c) {
-        colisao.remove(c);
+        if (listaColisao.contains(c)) {
+            listaColisao.remove(c);
+        }
     }
 
-   /* private void disparaColidido() {
-        Collection<ColisaoListenner> c2;
-        synchronized (this) {
-            c2 = (Collection) (((ArrayList) colisao).clone());
-        }
-        ColisaoEvent evento = new ColisaoEvent(this);
-        for (ColisaoListenner c : c2) {
-            c.colidiu(evento);
-        }
-    }*/
-
+    /* private void disparaColidido() {
+     Collection<ColisaoListenner> c2;
+     synchronized (this) {
+     c2 = (Collection) (((ArrayList) colisao).clone());
+     }
+     ColisaoEvent evento = new ColisaoEvent(this);
+     for (ColisaoListenner c : c2) {
+     c.colidiu(evento);
+     }
+     }*/
+    
+    /**
+     * Verifica a colisão de todos os cadastrados e dispara o evento;
+     */
     public void verificarColisao() {
-        Collection<ColisaoListenner> colisaoClone = new ArrayList<ColisaoListenner>();
-        colisaoClone.addAll(colisao);
+        Collection<ColisaoListenner> colisaoClone = new ArrayList<>();
+        colisaoClone.addAll(listaColisao);
         for (ColisaoListenner c1 : colisaoClone) {
 
             for (ColisaoListenner c2 : colisaoClone) {
                 if (!c1.equals(c2)) {
-                    if (c1.getX() + c1.getWidth() > c2.getX() && c1.getX() < c2.getX() + c2.getWidth() && c1.getY() + c1.getHeight() > c2.getY() && c1.getY() < c2.getY() + c2.getHeight()) {
-                        ColisaoEvent evento = new ColisaoEvent(this, (GameObject)c2);
+                    if (c1.getX() + c1.getWidth() > c2.getX() && c1.getX() < c2.getX() + c2.getWidth()
+                            && c1.getY() + c1.getHeight() > c2.getY() 
+                            && c1.getY() < c2.getY() + c2.getHeight()) {
+                        
+                        ColisaoEvent evento = new ColisaoEvent(this, (GameObject) c2);
                         c1.colidiu(evento);
                     }
                 }

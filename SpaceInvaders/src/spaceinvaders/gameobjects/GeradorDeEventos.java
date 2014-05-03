@@ -9,9 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.Jogo;
-import spaceinvaders.utils.sprite.SpriteAnimated;
 import spaceinvaders.Resolucao;
-import spaceinvaders.SpaceInvaders;
 
 /**
  *

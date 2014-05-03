@@ -5,8 +5,8 @@
  */
 package spaceinvaders.gameobjects;
 
-import spaceinvaders.listenner.ColisaoEvent;
-import spaceinvaders.listenner.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoEvent;
+import spaceinvaders.listenners.ColisaoListenner;
 import spaceinvaders.utils.GameObject;
 
 /**
@@ -14,6 +14,10 @@ import spaceinvaders.utils.GameObject;
  * @author Siloe
  */
 public class Inimigo extends GameObject implements ColisaoListenner {
+
+    public Inimigo() {
+        this.setTag("inimigo");
+    }
 
     @Override
     public void update() {

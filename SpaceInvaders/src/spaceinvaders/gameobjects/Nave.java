@@ -1,19 +1,27 @@
 package spaceinvaders.gameobjects;
 
 import java.awt.event.KeyEvent;
-import spaceinvaders.listenner.ColisaoEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.Sprite;
-import spaceinvaders.listenner.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.utils.Jogo;
 
 /**
  *
  * @author Siloe
  */
 public class Nave extends GameObject implements ColisaoListenner{
+    
+    private int tiroFrequencia = 60;
+    private int contadorDeTiro=0;
+    
+    private Jogo jogo;
 
-    public Nave() {
-        
+    public Nave(Jogo jogo) {
+        this.jogo = jogo;
     }
 
     @Override
@@ -23,6 +31,23 @@ public class Nave extends GameObject implements ColisaoListenner{
         }
         if (keyPressed == KeyEvent.VK_RIGHT) {
             this.setX(this.getX() + 5);
+        }
+        
+        //Atira de tempos em tempos
+        contadorDeTiro++;
+        if(contadorDeTiro > tiroFrequencia){
+            //atira
+            TiroAmigo ta;
+            try {
+                ta = new TiroAmigo(jogo);
+                ta.setX(this.getX() + 50);
+                ta.setY(this.getY() + 20);
+                jogo.addGameObject(ta);
+                jogo.addColisaoListener(ta);
+            } catch (Exception ex) {
+                Logger.getLogger(Nave.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            contadorDeTiro = 0;
         }
     }
 
@@ -59,7 +84,7 @@ public class Nave extends GameObject implements ColisaoListenner{
 
     @Override
     public void colidiu(ColisaoEvent c) {
-        System.out.println("SUENNY DISSE Q BATEU!");
+        //System.out.println("SUENNY DISSE Q BATEU!");
     }
     
     public String getTag(){

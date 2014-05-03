@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders.listenner;
+package spaceinvaders.listenners;
 
 import java.util.EventObject;
 import spaceinvaders.utils.Colisao;

@@ -6,7 +6,7 @@
 package spaceinvaders.gameobjects;
 
 import spaceinvaders.Resolucao;
-import spaceinvaders.listenner.ColisaoEvent;
+import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
@@ -19,6 +19,7 @@ public class InimigoRosinha extends Inimigo {
     private int cont = 0;
 
     public InimigoRosinha(Resolucao resolucao) throws Exception {
+        super();
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(resolucao.getCaminho() + "alien1.png", 1, 2);
@@ -46,7 +47,7 @@ public class InimigoRosinha extends Inimigo {
     public void colidiu(ColisaoEvent c) {
 
         try {
-
+            //verifica se conlide com uma das paredes
             if (c.getGameObject().getTag().equals("paredeDaEsquerda")) {
                 if (cont == 0) {
                     setY(this.getY() + 60);

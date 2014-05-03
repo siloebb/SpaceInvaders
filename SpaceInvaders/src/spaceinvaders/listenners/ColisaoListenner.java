@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.listenner;
+package spaceinvaders.listenners;
 
 import java.util.EventListener;
 
