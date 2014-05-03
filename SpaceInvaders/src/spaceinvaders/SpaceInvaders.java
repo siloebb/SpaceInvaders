@@ -11,6 +11,7 @@ import spaceinvaders.gameobjects.GeradorDeEventos;
 import spaceinvaders.gameobjects.Inimigo;
 import spaceinvaders.gameobjects.Life;
 import spaceinvaders.gameobjects.Nave;
+import spaceinvaders.gameobjects.Parede;
 import spaceinvaders.telas.Tela1;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.BackgroundImage;
@@ -178,6 +179,24 @@ public class SpaceInvaders {
         Life life = new Life(resolucao);
         jogo.addGameObject(life);
         
+        Parede parede = new Parede();
+        Parede paredeDireita = new Parede();
+        
+        parede.setHeight(resolucao.getTamanhoTela()[1]);
+        parede.setWidth(2);
+        parede.setX(0);
+        parede.setY(0);
+        parede.setTag("paredeDaEsquerda");
+        jogo.addGameObject(parede);
+        jogo.addColisaoListener(parede);
+        
+        paredeDireita.setHeight(resolucao.getTamanhoTela()[1]);
+        paredeDireita.setWidth(2);
+        paredeDireita.setX(resolucao.getTamanhoTela()[0]);
+        paredeDireita.setY(0);
+        paredeDireita.setTag("paredeDaDireita");
+        jogo.addGameObject(paredeDireita);
+        jogo.addColisaoListener(paredeDireita);
         jogo.start();
         
     }

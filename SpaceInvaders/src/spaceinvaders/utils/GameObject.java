@@ -10,7 +10,7 @@ public class GameObject {
 
     public static int keyPressed = 0;
     protected Sprite sprite;
-    public String tag;
+    private String tag = "semTag";
             
     public void update() {
 

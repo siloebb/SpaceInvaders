@@ -17,8 +17,10 @@ public class Inimigo extends GameObject implements ColisaoListenner {
 
     @Override
     public void update() {
+        movimentar();
+    }
+    public void movimentar(){
         this.setY(this.getY() + 2);
-
     }
 
     @Override
