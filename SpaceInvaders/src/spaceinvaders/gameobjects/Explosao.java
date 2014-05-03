@@ -18,14 +18,14 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
 public class Explosao extends GameObject{
     
     private int contador = 0;
-    private int time = 6;
+    private int time = 10;
 
     public Explosao(int x, int y) {
         try {
             SpriteAnimated spExplosion = new SpriteAnimated();
             spExplosion.carregarSprite("src/assets_800x600/" + "explosao.png", 4, 4);
             spExplosion.setX(x);
-            spExplosion.setY(y - 20);
+            spExplosion.setY(y);
             spExplosion.animate(0, 15, time);
             this.sprite = spExplosion;
         } catch (Exception ex) {

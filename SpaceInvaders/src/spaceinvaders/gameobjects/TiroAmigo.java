@@ -38,7 +38,8 @@ public class TiroAmigo extends GameObject implements ColisaoListenner {
     public void colidiu(ColisaoEvent c) {
         //Verifica se a tag tem o nome inimigo, se tiver cria uma explosão e auto destroi os 2
         if (c.getGameObject().getTag().contains("inimigo")) {
-            Explosao explosao = new Explosao(this.getX(), this.getY());
+            Explosao explosao;
+            explosao = new Explosao(c.getGameObject().getX(), c.getGameObject().getY());
             jogo.addGameObject(explosao);
             c.getGameObject().selfDestroy();
             this.selfDestroy();
