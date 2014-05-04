@@ -42,7 +42,6 @@ public class GeradorDeEventos extends GameObject {
                 Inimigo alien = fabricaDeInimigo.getInimigo(50, 0, resolucao.getCaminho(), jogo);
                 this.jogo.addColisaoListener(alien);
                 this.jogo.addGameObject(alien);                
-
             } catch (Exception ex) {
                 Logger.getLogger(GeradorDeEventos.class.getName()).log(Level.SEVERE, null, ex);
             }
