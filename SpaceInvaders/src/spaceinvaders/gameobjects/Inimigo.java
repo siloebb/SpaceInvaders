@@ -20,7 +20,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
 
     private Jogo jogo;
     private int tiroFrequencia = 120;
-    private int contadorDeTiro=0;
+    private int contadorDeTiro = 0;
 
     public Jogo getJogo() {
         return jogo;
@@ -29,6 +29,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
+
     public Inimigo(Jogo jogo) {
         this.setTag("inimigo");
         this.jogo = jogo;
@@ -39,7 +40,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
         movimentar();
         //Atira de tempos em tempos
         contadorDeTiro++;
-        if(contadorDeTiro > tiroFrequencia){
+        if (contadorDeTiro > tiroFrequencia) {
             //atira
             TiroInimigo ta;
             try {
@@ -54,21 +55,20 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
             contadorDeTiro = 0;
         }
     }
-    public void movimentar(){
+
+    public void movimentar() {
         this.setY(this.getY() + 2);
     }
 
     @Override
     public void colidiu(ColisaoEvent c) {
-        try{
-        if(((GameObject)c.getGameObject()).getTag().equals("nave")){
-            System.out.println("EU BATIIIIIIIIII!!!");
-        }
-        else{
-            System.out.println("coisa eh:" + ((GameObject)c.getSource()).getTag());
-        }
-        } catch ( Exception e){
-        //   e.getMessage();
+        try {
+            if (((GameObject) c.getGameObject()).getTag().equals("nave")) {
+                System.out.println("Preciso matar a nave porque toquei nela");
+            }
+
+        } catch (Exception e) {
+            //   e.getMessage();
         }
     }
 

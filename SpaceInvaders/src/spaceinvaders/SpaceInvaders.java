@@ -149,6 +149,8 @@ public class SpaceInvaders {
         Life life = new Life(resolucao);
         jogo.addGameObject(life);
         
+        nave.addNaveListener(life);
+        
         //Cirando Paredes invisivéis para colisão
         Parede parede = new Parede();
         Parede paredeDireita = new Parede();

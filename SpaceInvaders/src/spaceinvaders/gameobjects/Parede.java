@@ -47,7 +47,7 @@ public class Parede extends GameObject implements ColisaoListenner{
 
     @Override
     public void colidiu(ColisaoEvent c) {
-        System.out.println("bati na parede! que coisa!!");
+       // System.out.println("bati na parede! que coisa!!");
     }
             
 }

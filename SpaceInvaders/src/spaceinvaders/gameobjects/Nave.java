@@ -1,13 +1,17 @@
 package spaceinvaders.gameobjects;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.utils.GameObject;
-import spaceinvaders.utils.sprite.Sprite;
 import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.NaveEvent;
+import spaceinvaders.listenners.NaveListener;
+import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.Jogo;
+import spaceinvaders.utils.sprite.Sprite;
 
 /**
  *
@@ -19,15 +23,16 @@ public class Nave extends GameObject implements ColisaoListenner {
     private int contadorDeTiro = 0;
     private int life = 3;
     private int cont = 0;
-
+    private Collection<NaveListener> naveListeners;
     private Jogo jogo;
 
     public Nave(Jogo jogo) {
+        naveListeners = new ArrayList<NaveListener>();
         this.jogo = jogo;
     }
 
     public void perderLife() {
-        
+
         if (cont == 0) {
             this.life--;
 
@@ -35,12 +40,36 @@ public class Nave extends GameObject implements ColisaoListenner {
                 this.selfDestroy();
             }
             cont = 60;
+            this.disparaNavePerdeuVida();
+        }
+
+    }
+
+    public void addNaveListener(NaveListener e) {
+        if (!naveListeners.contains(e)) {
+            naveListeners.add(e);
+        }
+    }
+
+    public void removeNaveListener(NaveListener e) {
+        if (naveListeners.contains(e)) {
+            naveListeners.remove(e);
+        }
+    }
+
+    public void disparaNavePerdeuVida() {
+        if (naveListeners != null) {
+            for (NaveListener naveListener : naveListeners) {
+                NaveEvent naveEvent = new NaveEvent(this);
+                naveEvent.setVida(life);
+                naveListener.NavePerdeuVida(naveEvent);
+            }
         }
     }
 
     @Override
     public void update() {
-        if(cont>0){
+        if (cont > 0) {
             cont--;
         }
         if (keyPressed == KeyEvent.VK_LEFT) {
