@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import spaceinvaders.gameobjects.Nave;
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
 
 /**
  *
@@ -17,15 +17,15 @@ import spaceinvaders.listenners.ColisaoListenner;
  */
 public class Colisao {
 
-    Collection<ColisaoListenner> listaColisao = new ArrayList<>();
+    Collection<ColisaoListener> listaColisao = new ArrayList<>();
 
-    public synchronized void addColisaoListener(ColisaoListenner c) {
+    public synchronized void addColisaoListener(ColisaoListener c) {
         if (!listaColisao.contains(c)) {
             listaColisao.add(c);
         }
     }
 
-    public synchronized void removeColisaoListener(ColisaoListenner c) {
+    public synchronized void removeColisaoListener(ColisaoListener c) {
         if (listaColisao.contains(c)) {
             listaColisao.remove(c);
         }
@@ -46,11 +46,11 @@ public class Colisao {
      * Verifica a colisão de todos os cadastrados e dispara o evento;
      */
     public void verificarColisao() {
-        Collection<ColisaoListenner> colisaoClone = new ArrayList<>();
+        Collection<ColisaoListener> colisaoClone = new ArrayList<>();
         colisaoClone.addAll(listaColisao);
-        for (ColisaoListenner c1 : colisaoClone) {
+        for (ColisaoListener c1 : colisaoClone) {
 
-            for (ColisaoListenner c2 : colisaoClone) {
+            for (ColisaoListener c2 : colisaoClone) {
                 if (!c1.equals(c2)) {
                     if (c1.getX() + c1.getWidth() > c2.getX() && c1.getX() < c2.getX() + c2.getWidth()
                             && c1.getY() + c1.getHeight() > c2.getY() 

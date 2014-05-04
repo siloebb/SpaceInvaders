@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import spaceinvaders.telas.JanelaPrincipal;
 import spaceinvaders.utils.sprite.Background;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
+import spaceinvaders.utils.sprite.Texto;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Jogo extends Thread{
 
     private static ArrayList<GameObject> listaGameObject;
     private static ArrayList<Background> listaBackground;
+    private static ArrayList<Texto> listaText;
 
     KeyAdapter ka;
 
@@ -32,12 +34,13 @@ public class Jogo extends Thread{
     private void iniciarJogo(int[] tamTela) {
         listaGameObject = new ArrayList<>();
         listaBackground = new ArrayList<>();
+        listaText = new ArrayList<>();
         colisao = new Colisao();
         
         if(janela == null){
-            janela = new JanelaPrincipal(listaGameObject, listaBackground, tamTela); //janela tem mais um parametro
+            janela = new JanelaPrincipal(listaGameObject, listaBackground, listaText, tamTela); //janela tem mais um parametro
         }else{
-            janela.alterarLista(listaGameObject, listaBackground);
+            janela.alterarLista(listaGameObject, listaBackground, listaText);
         }
 
         janela.requestFocus();
@@ -80,13 +83,20 @@ public class Jogo extends Thread{
     public void removeBackground(Background background) throws Exception {
         listaBackground.remove(background);
     }
+    
+    public void addText(Texto texto) throws Exception {
+        listaText.add(texto);
+    }
 
+    public void removeText(Texto texto) throws Exception {
+        listaText.remove(texto);
+    }
    
-    public synchronized void addColisaoListener(ColisaoListenner c){
+    public synchronized void addColisaoListener(ColisaoListener c){
         colisao.addColisaoListener(c);
     }
     
-    public  synchronized void removeColisaoListener(ColisaoListenner c){
+    public  synchronized void removeColisaoListener(ColisaoListener c){
         colisao.removeColisaoListener(c);
     }
     
@@ -113,7 +123,7 @@ public class Jogo extends Thread{
                 listaGameObject.remove(gameObject);
                 try{
                     //ele tenta tirar do colisionador
-                    colisao.removeColisaoListener((ColisaoListenner)gameObject);
+                    colisao.removeColisaoListener((ColisaoListener)gameObject);
                 }catch(Exception e){
                     //Não faz nada
                 }

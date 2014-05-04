@@ -65,7 +65,7 @@ public class GameObject {
     /**
      * Alerta ao jogo que é para destroir este objeto
      */
-    public final void selfDestroy() {
+    public void selfDestroy() {
         //sprite = null;
         flagSelfDestroy = true;
     }

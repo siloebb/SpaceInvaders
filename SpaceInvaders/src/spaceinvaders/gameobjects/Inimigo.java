@@ -5,10 +5,14 @@
  */
 package spaceinvaders.gameobjects;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
+import spaceinvaders.listenners.InimigoEvent;
+import spaceinvaders.listenners.InimigoListener;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.Jogo;
 
@@ -16,23 +20,47 @@ import spaceinvaders.utils.Jogo;
  *
  * @author Siloe
  */
-public abstract class Inimigo extends GameObject implements ColisaoListenner {
+public abstract class Inimigo extends GameObject implements ColisaoListener {
 
     private Jogo jogo;
     private int tiroFrequencia = 120;
     private int contadorDeTiro = 0;
-
-    public Jogo getJogo() {
-        return jogo;
-    }
-
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
-    }
+    private Collection<InimigoListener> listaInimigosListeners;
+    
+    private int pontos = 10;
 
     public Inimigo(Jogo jogo) {
         this.setTag("inimigo");
         this.jogo = jogo;
+        listaInimigosListeners = new ArrayList<>();
+    }
+
+    public void addInimigoListenner(InimigoListener il) {
+        if (il != null) {
+            if (!listaInimigosListeners.contains(il)) {
+                listaInimigosListeners.add(il);
+            }
+        }
+    }
+
+    public void removeInimigoListenner(InimigoListener il) {
+        if (il != null) {
+            if (listaInimigosListeners.contains(il)) {
+                listaInimigosListeners.remove(il);
+            }
+        }
+    }
+    
+    public void disparaInimigoMorreu(){
+        for (InimigoListener il : listaInimigosListeners) {
+            InimigoEvent ev = new InimigoEvent(this);
+            ev.setPontos(pontos);
+            il.inimigoMorreu(ev);
+        }
+    }
+
+    public void movimentar() {
+        this.setY(this.getY() + 2);
     }
 
     @Override
@@ -56,10 +84,6 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
         }
     }
 
-    public void movimentar() {
-        this.setY(this.getY() + 2);
-    }
-
     @Override
     public void colidiu(ColisaoEvent c) {
         try {
@@ -70,6 +94,31 @@ public abstract class Inimigo extends GameObject implements ColisaoListenner {
         } catch (Exception e) {
             //   e.getMessage();
         }
+    }
+
+    public Jogo getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+    
+    /**
+     * Usar este metódo para destroir, se não não tem pontos
+     */
+    @Override
+    public void selfDestroy(){
+        super.selfDestroy();
+        disparaInimigoMorreu();        
     }
 
 }

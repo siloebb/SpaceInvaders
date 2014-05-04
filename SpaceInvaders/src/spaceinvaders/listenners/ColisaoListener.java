@@ -12,7 +12,7 @@ import java.util.EventListener;
  *
  * @author suka
  */
-public interface ColisaoListenner extends EventListener{
+public interface ColisaoListener extends EventListener{
     public void colidiu(ColisaoEvent c);
     public int getX();
     public int getY();

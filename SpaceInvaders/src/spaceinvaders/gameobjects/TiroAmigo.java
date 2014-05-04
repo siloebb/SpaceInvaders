@@ -6,7 +6,7 @@
 package spaceinvaders.gameobjects;
 
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -15,7 +15,7 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  *
  * @author Siloe
  */
-public class TiroAmigo extends GameObject implements ColisaoListenner {
+public class TiroAmigo extends GameObject implements ColisaoListener {
 
     private Jogo jogo;
 

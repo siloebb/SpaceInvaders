@@ -7,14 +7,14 @@
 package spaceinvaders.gameobjects;
 
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.utils.GameObject;
 
 /**
  *
  * @author suka
  */
-public class Parede extends GameObject implements ColisaoListenner{
+public class Parede extends GameObject implements ColisaoListener{
     private int height;
     private int width;
     private int x;

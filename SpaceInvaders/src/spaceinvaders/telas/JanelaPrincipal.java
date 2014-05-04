@@ -1,6 +1,7 @@
 package spaceinvaders.telas;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.Background;
+import spaceinvaders.utils.sprite.Texto;
 
 /**
  *
@@ -17,15 +19,18 @@ public class JanelaPrincipal extends JComponent {
 
     private ArrayList<Background> backgroundList;
     private ArrayList<GameObject> gameObjectList;
+    private ArrayList<Texto> texttList;
     private JFrame frame;
     private static boolean frameNovo = true;
 
     private String tituloDoJogo = "Space Invaders";
 
-    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList, int[] tamTela) throws HeadlessException {
+    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList, 
+            ArrayList<Texto> texttList, int[] tamTela) throws HeadlessException {
         //super("Space Invaders");
         this.gameObjectList = gameObjectList;
         this.backgroundList = backgroundList;
+        this.texttList = texttList;
 
         this.setSize(tamTela[0], tamTela[1]); //agora o tamanho é definido assim
         this.setVisible(true);
@@ -33,10 +38,10 @@ public class JanelaPrincipal extends JComponent {
 
         //Criando um Frame Pai, pois é necessário
         if (frameNovo == true) {
-            frame = new JFrame(tituloDoJogo);            
+            frame = new JFrame(tituloDoJogo);
         }
         System.out.println("Iniciando nova tela");
-        
+
         frame.setSize(tamTela[0], tamTela[1]);//agora o tamanho é definido assim
         frame.setVisible(true);
         frame.setResizable(false);
@@ -45,14 +50,16 @@ public class JanelaPrincipal extends JComponent {
         frame.add(this);
     }
 
-    public void alterarLista(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList) {
+    public void alterarLista(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList,
+            ArrayList<Texto> textList) {
         this.gameObjectList = gameObjectList;
         this.backgroundList = backgroundList;
+        this.texttList = textList;
     }
 
     @Override
     public void paint(Graphics g) {
-        
+
         //Clonar a lista eh necessária para evitar erros de concorrência
         ArrayList<Background> backgroundListClone = new ArrayList<>();
         backgroundListClone.addAll(backgroundList);
@@ -62,7 +69,7 @@ public class JanelaPrincipal extends JComponent {
                 background.print(g);
             }
         }
-        
+
         ArrayList<GameObject> gameObjectListClone = new ArrayList<>();
         gameObjectListClone.addAll(gameObjectList);
 
@@ -70,6 +77,17 @@ public class JanelaPrincipal extends JComponent {
             for (GameObject go : gameObjectListClone) {
                 if (go.getSprite() != null) {
                     go.getSprite().print(g);
+                }
+            }
+        }
+        
+        ArrayList<Texto> textListClone = new ArrayList<>();
+        textListClone.addAll(texttList);
+
+        if (textListClone != null) {
+            for (Texto t : textListClone) {
+                if (t != null) {
+                    t.print(g);
                 }
             }
         }

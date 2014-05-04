@@ -5,7 +5,6 @@
  */
 package spaceinvaders.gameobjects;
 
-
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -18,12 +17,8 @@ public class InimigoAmarelo extends Inimigo {
 
     private int sentido;
     private int cont = 0;
-    
-    
 
-
-    public InimigoAmarelo(int posicaoX, int posicaoY, String caminho,  Jogo jogo) throws Exception {
-
+    public InimigoAmarelo(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
         this.sentido = 2;

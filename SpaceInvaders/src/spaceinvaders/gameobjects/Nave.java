@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.listenners.ColisaoEvent;
-import spaceinvaders.listenners.ColisaoListenner;
+import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.listenners.NaveEvent;
 import spaceinvaders.listenners.NaveListener;
 import spaceinvaders.utils.GameObject;
@@ -17,7 +17,7 @@ import spaceinvaders.utils.sprite.Sprite;
  *
  * @author Siloe
  */
-public class Nave extends GameObject implements ColisaoListenner {
+public class Nave extends GameObject implements ColisaoListener {
 
     private int tiroFrequencia = 60;
     private int contadorDeTiro = 0;

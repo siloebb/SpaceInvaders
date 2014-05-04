@@ -7,26 +7,26 @@
 package spaceinvaders.listenners;
 
 import java.util.EventObject;
-import spaceinvaders.gameobjects.Nave;
+import spaceinvaders.gameobjects.Inimigo;
 
 /**
  *
- * @author suka
+ * @author Siloe
  */
-public class NaveEvent extends EventObject {
-
-    private int vida;
+public class InimigoEvent extends EventObject {
     
-    public NaveEvent(Nave source) {
+    private int pontos;
+
+    public InimigoEvent(Inimigo source) {
         super(source);
     }
-    
-    public int getVida() {
-        return vida;
+
+    public int getPontos() {
+        return pontos;
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
     
 }

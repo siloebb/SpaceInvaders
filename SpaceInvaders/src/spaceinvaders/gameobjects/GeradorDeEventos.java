@@ -25,13 +25,15 @@ public class GeradorDeEventos extends GameObject {
     private Jogo jogo;
     private int time, tipo;
     private InimigoFactory fabricaDeInimigo;
+    private Score score;
 
-    public GeradorDeEventos(Resolucao resolucao, Jogo jogo) {
+    public GeradorDeEventos(Resolucao resolucao, Jogo jogo, Score score) {
         fabricaDeInimigo = new InimigoFactory();
         this.resolucao = resolucao;
         this.jogo = jogo;
+        this.score = score;
         time = 0;
-        tipo=0;
+        tipo = 0;
     }
 
     @Override
@@ -39,47 +41,35 @@ public class GeradorDeEventos extends GameObject {
         time++;
         if (time >= 180) {
             //60 frames == 1 segundo
-          
-            
-            
-                  
+
             try {
-            
+
                 Inimigo alien = fabricaDeInimigo.getInimigo(50, 0, resolucao.getCaminho(), jogo, sorteio());
+                alien.addInimigoListenner(score);
                 this.jogo.addColisaoListener(alien);
-                this.jogo.addGameObject(alien);                
+                this.jogo.addGameObject(alien);
             } catch (Exception ex) {
                 Logger.getLogger(GeradorDeEventos.class.getName()).log(Level.SEVERE, null, ex);
             }
             time = 0;
-            
-            
-            
-            
-    
 
-     
-          
-        
+        }
+
     }
 
-}
-    
-    
-    public int sorteio(){
-    
-         int sorteio = (int) (Math.random() * 100);
-             if (sorteio >= 0 && sorteio < 33) {
-                 tipo=1;
-             }
-             if (sorteio >= 33 && sorteio < 66) {
-                 tipo=2;
-             }
-             if (sorteio >= 66 && sorteio < 100) {
-                 tipo=3;
-             }
-           
-        
+    public int sorteio() {
+
+        int sorteio = (int) (Math.random() * 100);
+        if (sorteio >= 0 && sorteio < 33) {
+            tipo = 1;
+        }
+        if (sorteio >= 33 && sorteio < 66) {
+            tipo = 2;
+        }
+        if (sorteio >= 66 && sorteio < 100) {
+            tipo = 3;
+        }
+
         return tipo;
     }
 }
