@@ -27,6 +27,7 @@ public class GeradorDeEventos extends GameObject {
     private InimigoFactory fabricaDeInimigo;
 
     public GeradorDeEventos(Resolucao resolucao, Jogo jogo) {
+        fabricaDeInimigo = new InimigoFactory();
         this.resolucao = resolucao;
         this.jogo = jogo;
         time = 0;
