@@ -7,6 +7,7 @@ package spaceinvaders.gameobjects;
 
 import spaceinvaders.Resolucao;
 import spaceinvaders.listenners.ColisaoEvent;
+import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
@@ -17,9 +18,11 @@ public class InimigoRosinha extends Inimigo {
 
     private int sentido;
     private int cont = 0;
+    
+    
 
-    public InimigoRosinha(Resolucao resolucao) throws Exception {
-        super();
+    public InimigoRosinha(Resolucao resolucao, Jogo jogo) throws Exception {
+        super(jogo);
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(resolucao.getCaminho() + "alien1.png", 1, 2);

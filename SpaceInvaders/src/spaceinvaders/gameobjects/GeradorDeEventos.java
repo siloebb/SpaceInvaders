@@ -36,7 +36,7 @@ public class GeradorDeEventos extends GameObject {
         if (time >= 120) {
             //60 frames == 1 segundo
             try {
-                InimigoRosinha rosinha = new InimigoRosinha(resolucao);
+                InimigoRosinha rosinha = new InimigoRosinha(resolucao,jogo);
                 this.jogo.addColisaoListener(rosinha);
                 this.jogo.addGameObject(rosinha);                
             } catch (Exception ex) {
