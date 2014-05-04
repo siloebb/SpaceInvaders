@@ -13,7 +13,7 @@ import spaceinvaders.utils.GameObject;
  *
  * @author Siloe
  */
-public class Inimigo extends GameObject implements ColisaoListenner {
+public abstract class Inimigo extends GameObject implements ColisaoListenner {
 
     public Inimigo() {
         this.setTag("inimigo");

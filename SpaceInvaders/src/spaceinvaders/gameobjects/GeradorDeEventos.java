@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.Resolucao;
+import spaceinvaders.criadores.InimigoFactory;
 
 /**
  *
@@ -23,6 +24,7 @@ public class GeradorDeEventos extends GameObject {
     private Resolucao resolucao;
     private Jogo jogo;
     private int time;
+    private InimigoFactory fabricaDeInimigo;
 
     public GeradorDeEventos(Resolucao resolucao, Jogo jogo) {
         this.resolucao = resolucao;
@@ -36,9 +38,9 @@ public class GeradorDeEventos extends GameObject {
         if (time >= 120) {
             //60 frames == 1 segundo
             try {
-                InimigoRosinha rosinha = new InimigoRosinha(resolucao);
-                this.jogo.addColisaoListener(rosinha);
-                this.jogo.addGameObject(rosinha);                
+                Inimigo alien = fabricaDeInimigo.getInimigo(50, 0, resolucao.getCaminho());
+                this.jogo.addColisaoListener(alien);
+                this.jogo.addGameObject(alien);                
             } catch (Exception ex) {
                 Logger.getLogger(GeradorDeEventos.class.getName()).log(Level.SEVERE, null, ex);
             }
