@@ -6,20 +6,35 @@
 
 package spaceinvaders.gameobjects;
 
+import java.awt.event.KeyEvent;
+import spaceinvaders.SpaceInvaders;
 import spaceinvaders.utils.GameObject;
+import static spaceinvaders.utils.GameObject.keyPressed;
 
 /**
  *
  * @author Jéssica Magally
  */
 public class BotaoSobre extends GameObject {
+    
+    SpaceInvaders spInvaders;
+
+    public BotaoSobre(SpaceInvaders spInvaders) {
+        this.spInvaders= spInvaders;
+    }
+    
+
 
     @Override
     public void update() {
-        super.update(); //To change body of generated methods, choose Tools | Templates.
+        if(keyPressed == KeyEvent.VK_A){
+         System.out.println("Sobre");
+         spInvaders.mostrarSobre();
+         System.out.println("Sobre funfando");
     }
     
     
     
     
+}
 }
