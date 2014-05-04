@@ -13,29 +13,46 @@ import spaceinvaders.utils.Jogo;
  *
  * @author Siloe
  */
-public class Nave extends GameObject implements ColisaoListenner{
-    
+public class Nave extends GameObject implements ColisaoListenner {
+
     private int tiroFrequencia = 60;
-    private int contadorDeTiro=0;
-    
+    private int contadorDeTiro = 0;
+    private int life = 3;
+    private int cont = 0;
+
     private Jogo jogo;
 
     public Nave(Jogo jogo) {
         this.jogo = jogo;
     }
 
+    public void perderLife() {
+        
+        if (cont == 0) {
+            this.life--;
+
+            if (this.life == 0) {
+                this.selfDestroy();
+            }
+            cont = 60;
+        }
+    }
+
     @Override
     public void update() {
+        if(cont>0){
+            cont--;
+        }
         if (keyPressed == KeyEvent.VK_LEFT) {
             this.setX(this.getX() - 5);
         }
         if (keyPressed == KeyEvent.VK_RIGHT) {
             this.setX(this.getX() + 5);
         }
-        
+
         //Atira de tempos em tempos
         contadorDeTiro++;
-        if(contadorDeTiro > tiroFrequencia){
+        if (contadorDeTiro > tiroFrequencia) {
             //atira
             TiroAmigo ta;
             try {
@@ -86,8 +103,8 @@ public class Nave extends GameObject implements ColisaoListenner{
     public void colidiu(ColisaoEvent c) {
         //System.out.println("SUENNY DISSE Q BATEU!");
     }
-    
-    public String getTag(){
+
+    public String getTag() {
         return "nave";
     }
 
