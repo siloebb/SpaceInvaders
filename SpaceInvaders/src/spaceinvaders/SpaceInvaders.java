@@ -28,7 +28,7 @@ public class SpaceInvaders {
     /**
      * @param args the command line arguments
      */
-    private Resolucao resolucao;
+   Resolucao resolucao = Resolucao.getInstance();
 
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
@@ -47,9 +47,8 @@ public class SpaceInvaders {
          * acoplamento mode on
          * isso não é elegante, mas por enquanto resolve o problema
          */
-        resolucao = new Resolucao(resolucao_escolhida);
-
-        resolucao.definirPosicoes();
+        
+        resolucao.definirResolucao(resolucao_escolhida);
         sp.iniciarMenu(sp);
     }
 
@@ -138,7 +137,7 @@ public class SpaceInvaders {
         }
 
         //Criando barra de life
-        Life life = new Life(resolucao);
+        Life life = new Life();
         jogo.addGameObject(life);
 
         nave.addNaveListener(life);
@@ -171,7 +170,7 @@ public class SpaceInvaders {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        GeradorDeEventos ge = new GeradorDeEventos(resolucao, jogo, score);
+        GeradorDeEventos ge = new GeradorDeEventos( jogo, score);
         jogo.addGameObject(ge);
 
         //Iniciando Jogo

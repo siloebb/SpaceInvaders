@@ -14,18 +14,16 @@ package spaceinvaders;
  *  
  */
 public class Resolucao {
+    
+    
+    private static Resolucao resolucao;
+    private static int resolucaoTela = 0;
+    private static int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo;
+    private static String caminho;
 
-    private int resolucao = 0;
-    private int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo;
-    private String caminho;
+    private Resolucao() {
 
-    public Resolucao(String resolucao_escolhida) {
-
-        if ("800x600".equals(resolucao_escolhida)) {
-            resolucao = 2;
-        } else {
-            resolucao = 1;
-        }
+       
 
         /*
         * Em tamanhoTela, posicaoTitulo, posicaoBotoes e posicaoNave, a primeira
@@ -41,18 +39,39 @@ public class Resolucao {
         posicaoNave = new int[2];
     }
 
-    public void definirPosicoes() {
+    public static Resolucao getInstance(){
+    if(resolucao==null){
+        resolucao = new Resolucao();
+    }
+    
+    return resolucao;
+    }
+
+
+    
+    public void definirResolucao(String resolucao_escolhida ){
+         if ("800x600".equals(resolucao_escolhida)) {
+            resolucaoTela = 2;
+        } else {
+            resolucaoTela = 1;
+        }
+        
+        resolucao.definirPosicoes();
+    }
+    
+     
+    private void definirPosicoes() {
         /*
         * Todos os prites que salvei estão nas proporções e tamanhos corretos
         * Vou criar um pdf com histoyboard e as "divisões" de tela baseada nas
         * proporções 
         *
         * A String caminho guarda a pasta correta onde os sprites devem ser 
-        * buscados, para usar: resolucao.getCaminho()+"nomedoSprite.png"
+        * buscados, para usar: resolucaoTela.getCaminho()+"nomedoSprite.png"
         */
            
                 
-        if (resolucao == 1) {
+        if (resolucaoTela == 1) {
             caminho = "src/assets_320x180/";
 
             tamanhoTela[0] = 320;

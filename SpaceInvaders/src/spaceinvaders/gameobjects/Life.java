@@ -15,11 +15,12 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  */
 public class Life extends GameObject implements NaveListener {
 
-    public Life(Resolucao resolucao) {
-
+    public Life() {
+        
+        
         SpriteAnimated sprite = new SpriteAnimated();
-        try {
-            sprite.carregarSprite((resolucao.getCaminho() + "/life.png"), 1, 4);
+        try { //isso é uma chamada correta de resolução????
+            sprite.carregarSprite((Resolucao.getInstance().getCaminho() + "/life.png"), 1, 4);
         } catch (Exception ex) {
             Logger.getLogger(Life.class.getName()).log(Level.SEVERE, null, ex);
         }
