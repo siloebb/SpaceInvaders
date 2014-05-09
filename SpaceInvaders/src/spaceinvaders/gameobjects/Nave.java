@@ -40,6 +40,8 @@ public class Nave extends GameObject implements ColisaoListener {
 
             if (this.life == 0) {
                 this.selfDestroy();
+                GameOver gameOver = new GameOver();
+                jogo.addGameObject(gameOver);
             }
             cont = 60;
             this.disparaNavePerdeuVida();

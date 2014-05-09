@@ -8,69 +8,63 @@ package spaceinvaders;
 /**
  *
  * @author Bianca
- * 
+ *
  * Essa classe é pra indexar todas as posições iniciais dos objetos bem como a
  * resolução da tela
- *  
+ *
  */
 public class Resolucao {
-    
-    
+
     private static Resolucao resolucao;
     private static int resolucaoTela = 0;
     private static int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo;
     private static String caminho;
+    private static SpaceInvaders spaceInvaders;
 
     private Resolucao() {
 
-       
-
         /*
-        * Em tamanhoTela, posicaoTitulo, posicaoBotoes e posicaoNave, a primeira
-        * posição do vetor corresponde a coordenada X e as demais a coordenada Y.
-        * Em posicaoInimigo as 8 primeiras posições do vetor corresponde as 
-        * possíveis coordenadas X que o inimigo criado pode assumir e apenas a 
-        * ultima posição corresponde a coordenada Y
-        */
-        tamanhoTela = new int[2]; 
+         * Em tamanhoTela, posicaoTitulo, posicaoBotoes e posicaoNave, a primeira
+         * posição do vetor corresponde a coordenada X e as demais a coordenada Y.
+         * Em posicaoInimigo as 8 primeiras posições do vetor corresponde as 
+         * possíveis coordenadas X que o inimigo criado pode assumir e apenas a 
+         * ultima posição corresponde a coordenada Y
+         */
+        tamanhoTela = new int[2];
         posicaoTitulo = new int[2];
         posicaoBotoes = new int[4];
         posicaoInimigo = new int[9];
         posicaoNave = new int[2];
     }
 
-    public static Resolucao getInstance(){
-    if(resolucao==null){
-        resolucao = new Resolucao();
-    }
-    
-    return resolucao;
+    public static Resolucao getInstance() {
+        if (resolucao == null) {
+            resolucao = new Resolucao();
+        }
+
+        return resolucao;
     }
 
-
-    
-    public void definirResolucao(String resolucao_escolhida ){
-         if ("800x600".equals(resolucao_escolhida)) {
+    public void definirResolucao(String resolucao_escolhida) {
+        if ("800x600".equals(resolucao_escolhida)) {
             resolucaoTela = 2;
         } else {
             resolucaoTela = 1;
         }
-        
+
         resolucao.definirPosicoes();
     }
-    
-     
+
     private void definirPosicoes() {
         /*
-        * Todos os prites que salvei estão nas proporções e tamanhos corretos
-        * Vou criar um pdf com histoyboard e as "divisões" de tela baseada nas
-        * proporções 
-        *
-        * A String caminho guarda a pasta correta onde os sprites devem ser 
-        * buscados, para usar: resolucaoTela.getCaminho()+"nomedoSprite.png"
-        */
-           
-                
+         * Todos os prites que salvei estão nas proporções e tamanhos corretos
+         * Vou criar um pdf com histoyboard e as "divisões" de tela baseada nas
+         * proporções 
+         *
+         * A String caminho guarda a pasta correta onde os sprites devem ser 
+         * buscados, para usar: resolucaoTela.getCaminho()+"nomedoSprite.png"
+         */
+
         if (resolucaoTela == 1) {
             caminho = "src/assets_320x180/";
 
@@ -142,11 +136,21 @@ public class Resolucao {
     public int[] getPosicaoNave() {
         return posicaoNave;
     }
-    public int getLarguraTela(){
+
+    public int getLarguraTela() {
         return tamanhoTela[0];
     }
-    public int getAlturaTela(){
+
+    public int getAlturaTela() {
         return tamanhoTela[1];
+    }
+
+    public SpaceInvaders getSpaceInvaders() {
+        return spaceInvaders;
+    }
+
+    public void setSpaceInvaders(SpaceInvaders spaceInvaders) {
+        Resolucao.spaceInvaders = spaceInvaders;
     }
 
 }

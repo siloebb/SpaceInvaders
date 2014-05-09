@@ -49,6 +49,7 @@ public class SpaceInvaders {
          */
         
         resolucao.definirResolucao(resolucao_escolhida);
+        resolucao.setSpaceInvaders(sp);
         sp.iniciarMenu(sp);
     }
 
