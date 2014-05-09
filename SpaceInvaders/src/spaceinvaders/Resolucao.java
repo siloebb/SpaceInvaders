@@ -142,5 +142,11 @@ public class Resolucao {
     public int[] getPosicaoNave() {
         return posicaoNave;
     }
+    public int getLarguraTela(){
+        return tamanhoTela[0];
+    }
+    public int getAlturaTela(){
+        return tamanhoTela[1];
+    }
 
 }

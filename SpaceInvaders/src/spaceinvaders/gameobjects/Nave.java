@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.Resolucao;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.listenners.NaveEvent;
@@ -25,6 +26,7 @@ public class Nave extends GameObject implements ColisaoListener {
     private int cont = 0;
     private Collection<NaveListener> naveListeners;
     private Jogo jogo;
+    private int velocidade = 5;
 
     public Nave(Jogo jogo) {
         naveListeners = new ArrayList<NaveListener>();
@@ -73,10 +75,17 @@ public class Nave extends GameObject implements ColisaoListener {
             cont--;
         }
         if (keyPressed == KeyEvent.VK_LEFT) {
-            this.setX(this.getX() - 5);
+            if(getX()>= 0){
+                this.setX(this.getX() - velocidade);
+            }
+           
+            
         }
         if (keyPressed == KeyEvent.VK_RIGHT) {
-            this.setX(this.getX() + 5);
+            Resolucao resolucao = Resolucao.getInstance();
+            if(getX() <= resolucao.getLarguraTela()- this.getWidth()){
+                this.setX(this.getX() + velocidade);
+            }
         }
 
         //Atira de tempos em tempos
@@ -130,7 +139,9 @@ public class Nave extends GameObject implements ColisaoListener {
 
     @Override
     public void colidiu(ColisaoEvent c) {
-        //System.out.println("SUENNY DISSE Q BATEU!");
+      /*  if(c.getGameObject().getTag().equals("paredeDaEsquerda")){
+            this.setX(getX() + velocidade);
+        }*/
     }
 
     public String getTag() {
