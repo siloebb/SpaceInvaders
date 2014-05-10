@@ -25,7 +25,7 @@ public class InimigoRosinha extends Inimigo {
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(caminho + "alien1.png", 1, 2);
         spInimigo.setX(50);
-        spInimigo.setY(0);
+        spInimigo.setY(25);
         spInimigo.animate(0, 1, 15);
         this.sprite = spInimigo;
     }
@@ -37,11 +37,13 @@ public class InimigoRosinha extends Inimigo {
         if (cont > 0) {
             cont--;
         }
+        
     }
 
     @Override
     public void movimentar() {
         setX(this.getX() + sentido);
+        setY(this.getY() + sentido +1);
     }
 
     @Override
