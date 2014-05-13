@@ -5,6 +5,7 @@
  */
 package spaceinvaders.gameobjects;
 
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.utils.GameObject;
@@ -26,6 +27,7 @@ public class GeradorDeEventos extends GameObject {
     private int time, tipo;
     private InimigoFactory fabricaDeInimigo;
     private Score score;
+    private Random random;
 
     public GeradorDeEventos( Jogo jogo, Score score) {
         fabricaDeInimigo = new InimigoFactory();
@@ -34,6 +36,7 @@ public class GeradorDeEventos extends GameObject {
         this.score = score;
         time = 0;
         tipo = 0;
+        random = new Random();
     }
 
     @Override
@@ -43,8 +46,9 @@ public class GeradorDeEventos extends GameObject {
             //60 frames == 1 segundo
 
             try {
-
-                Inimigo alien = fabricaDeInimigo.getInimigo(50, 0, resolucao.getCaminho(), jogo, sorteio());
+                int xRandom = random.nextInt(resolucao.getLarguraTela()-60);
+                Inimigo alien = fabricaDeInimigo.getInimigo(xRandom, 0, resolucao.getCaminho(), jogo, sorteio());
+                
                 alien.addInimigoListenner(score);
                 this.jogo.addColisaoListener(alien);
                 this.jogo.addGameObject(alien);
@@ -59,16 +63,8 @@ public class GeradorDeEventos extends GameObject {
 
     public int sorteio() {
 
-        int sorteio = (int) (Math.random() * 100);
-        if (sorteio >= 0 && sorteio < 33) {
-            tipo = 1;
-        }
-        if (sorteio >= 33 && sorteio < 66) {
-            tipo = 2;
-        }
-        if (sorteio >= 66 && sorteio < 100) {
-            tipo = 3;
-        }
+        //int sorteio = (int) (Math.random() * 2);
+        tipo = random.nextInt(3) + 1;
 
         return tipo;
     }

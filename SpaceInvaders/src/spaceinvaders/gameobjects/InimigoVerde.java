@@ -24,8 +24,8 @@ public class InimigoVerde extends Inimigo {
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(caminho + "alien3.png", 1, 4);
-        spInimigo.setX(400);
-        spInimigo.setY(0);
+        spInimigo.setX(posicaoX);
+        spInimigo.setY(posicaoY);
         spInimigo.animate(0, 3, 15);
         this.sprite = spInimigo;
     }
@@ -41,6 +41,7 @@ public class InimigoVerde extends Inimigo {
 
     @Override
     public void movimentar() {
+        //setX(this.getX() + sentido);
         setX(this.getX() + sentido);
     }
 

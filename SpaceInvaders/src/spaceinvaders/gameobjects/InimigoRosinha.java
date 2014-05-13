@@ -24,8 +24,8 @@ public class InimigoRosinha extends Inimigo {
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(caminho + "alien1.png", 1, 2);
-        spInimigo.setX(50);
-        spInimigo.setY(25);
+        spInimigo.setX(posicaoX);
+        spInimigo.setY(posicaoY);
         spInimigo.animate(0, 1, 15);
         this.sprite = spInimigo;
     }
@@ -43,7 +43,7 @@ public class InimigoRosinha extends Inimigo {
     @Override
     public void movimentar() {
         setX(this.getX() + sentido);
-        setY(this.getY() + sentido +1);
+        setY(this.getY() + ((sentido*sentido)/2) );
     }
 
     @Override
@@ -53,7 +53,7 @@ public class InimigoRosinha extends Inimigo {
             //verifica se conlide com uma das paredes
             if (c.getGameObject().getTag().equals("paredeDaEsquerda")) {
                 if (cont == 0) {
-                    setY(this.getY() + 60);
+                    //setY(this.getY() + 60);
                     cont = 5;
                 }
                 this.sentido = 2;
@@ -61,7 +61,7 @@ public class InimigoRosinha extends Inimigo {
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
                 if (cont == 0) {
-                    setY(this.getY() + 60);
+                    //setY(this.getY() + 60);
                     cont = 5;
                 }
                 this.sentido = -2;

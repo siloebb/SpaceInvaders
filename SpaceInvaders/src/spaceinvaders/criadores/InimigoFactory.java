@@ -1,5 +1,6 @@
 package spaceinvaders.criadores;
 
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.gameobjects.Inimigo;
@@ -15,6 +16,8 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  */
 public class InimigoFactory {
 
+    Random random = new Random();
+
     public Inimigo getInimigo(int posicaoX, int posicaoY, String caminho, Jogo jogo, int tipo) {
 
         if (tipo == 1) {
@@ -26,7 +29,7 @@ public class InimigoFactory {
                 Logger.getLogger(InimigoFactory.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         if (tipo == 2) {
             InimigoAmarelo alien2;
             try {

@@ -24,8 +24,8 @@ public class InimigoAmarelo extends Inimigo {
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(caminho + "alien2.png", 1, 2);
-        spInimigo.setX(200);
-        spInimigo.setY(0);
+        spInimigo.setX(posicaoX);
+        spInimigo.setY(posicaoY);
         spInimigo.animate(0, 1, 15);
         this.sprite = spInimigo;
     }
