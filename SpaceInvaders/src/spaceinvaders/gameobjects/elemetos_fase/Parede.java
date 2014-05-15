@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.elemetos_fase;
 
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;

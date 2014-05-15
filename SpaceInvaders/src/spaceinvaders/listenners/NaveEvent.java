@@ -7,7 +7,7 @@
 package spaceinvaders.listenners;
 
 import java.util.EventObject;
-import spaceinvaders.gameobjects.Nave;
+import spaceinvaders.gameobjects.naves.Nave;
 
 /**
  *

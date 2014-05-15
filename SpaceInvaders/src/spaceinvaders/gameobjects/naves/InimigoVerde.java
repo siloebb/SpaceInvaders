@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.naves;
 
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
@@ -13,20 +13,20 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  *
  * @author suka
  */
-public class InimigoRosinha extends Inimigo {
+public class InimigoVerde extends Inimigo {
 
     private int sentido;
     private int cont = 0;
 
-    public InimigoRosinha(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
+    public InimigoVerde(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
         this.sentido = 2;
         SpriteAnimated spInimigo = new SpriteAnimated();
-        spInimigo.carregarSprite(caminho + "alien1.png", 1, 2);
+        spInimigo.carregarSprite(caminho + "alien3.png", 1, 4);
         spInimigo.setX(posicaoX);
         spInimigo.setY(posicaoY);
-        spInimigo.animate(0, 1, 15);
+        spInimigo.animate(0, 3, 15);
         this.sprite = spInimigo;
     }
 
@@ -37,13 +37,12 @@ public class InimigoRosinha extends Inimigo {
         if (cont > 0) {
             cont--;
         }
-        
     }
 
     @Override
     public void movimentar() {
+        //setX(this.getX() + sentido);
         setX(this.getX() + sentido);
-        setY(this.getY() + ((sentido*sentido)/2) );
     }
 
     @Override
@@ -53,7 +52,7 @@ public class InimigoRosinha extends Inimigo {
             //verifica se conlide com uma das paredes
             if (c.getGameObject().getTag().equals("paredeDaEsquerda")) {
                 if (cont == 0) {
-                    //setY(this.getY() + 60);
+                    setY(this.getY() + 60);
                     cont = 5;
                 }
                 this.sentido = 2;
@@ -61,7 +60,7 @@ public class InimigoRosinha extends Inimigo {
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
                 if (cont == 0) {
-                    //setY(this.getY() + 60);
+                    setY(this.getY() + 60);
                     cont = 5;
                 }
                 this.sentido = -2;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.elemetos_fase;
 
 import java.awt.Color;
 import spaceinvaders.listenners.InimigoEvent;

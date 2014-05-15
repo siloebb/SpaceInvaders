@@ -3,10 +3,10 @@ package spaceinvaders.criadores;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import spaceinvaders.gameobjects.Inimigo;
-import spaceinvaders.gameobjects.InimigoAmarelo;
-import spaceinvaders.gameobjects.InimigoRosinha;
-import spaceinvaders.gameobjects.InimigoVerde;
+import spaceinvaders.gameobjects.naves.Inimigo;
+import spaceinvaders.gameobjects.naves.InimigoAmarelo;
+import spaceinvaders.gameobjects.naves.InimigoRosinha;
+import spaceinvaders.gameobjects.naves.InimigoVerde;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
 

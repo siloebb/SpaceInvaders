@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.elemetos_fase;
 
+import spaceinvaders.gameobjects.naves.Inimigo;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;

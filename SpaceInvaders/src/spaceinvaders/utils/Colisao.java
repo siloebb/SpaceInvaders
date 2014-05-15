@@ -7,7 +7,7 @@ package spaceinvaders.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import spaceinvaders.gameobjects.Nave;
+import spaceinvaders.gameobjects.naves.Nave;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
 

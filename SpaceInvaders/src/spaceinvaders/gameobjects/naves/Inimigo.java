@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.naves;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.gameobjects.tiro.TiroInimigo;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.listenners.InimigoEvent;

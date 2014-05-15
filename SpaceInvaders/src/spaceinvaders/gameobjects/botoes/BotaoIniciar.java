@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.botoes;
 
 import java.awt.event.KeyEvent;
 import spaceinvaders.SpaceInvaders;

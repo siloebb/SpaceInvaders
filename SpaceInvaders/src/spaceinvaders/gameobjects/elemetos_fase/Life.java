@@ -1,4 +1,4 @@
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.elemetos_fase;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

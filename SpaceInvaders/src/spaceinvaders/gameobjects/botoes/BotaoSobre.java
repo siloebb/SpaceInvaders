@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.botoes;
 
 import java.awt.event.KeyEvent;
 import spaceinvaders.SpaceInvaders;
@@ -15,23 +15,25 @@ import static spaceinvaders.utils.GameObject.keyPressed;
  *
  * @author Jéssica Magally
  */
-public class BotaoAjuda extends GameObject{
+public class BotaoSobre extends GameObject {
     
-    private SpaceInvaders spInvaders;
+    SpaceInvaders spInvaders;
 
-    public BotaoAjuda(SpaceInvaders spInvaders) {
-        this.spInvaders = spInvaders;
+    public BotaoSobre(SpaceInvaders spInvaders) {
+        this.spInvaders= spInvaders;
     }
-   
+    
+
+
     @Override
     public void update() {
-        super.update(); //To change body of generated methods, choose Tools | Templates.
-        
-         if(keyPressed == KeyEvent.VK_H){
-         System.out.println("Ajuda");
-         spInvaders.mostrarAjuda();
-         System.out.println("Ajuda funfando");
+        if(keyPressed == KeyEvent.VK_A){
+         System.out.println("Sobre");
+         spInvaders.mostrarSobre();
+         System.out.println("Sobre funfando");
     }
+    
+    
     
     
 }

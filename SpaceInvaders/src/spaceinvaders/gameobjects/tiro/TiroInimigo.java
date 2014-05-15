@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.tiro;
+import spaceinvaders.gameobjects.elemetos_fase.Explosao;
+import spaceinvaders.gameobjects.naves.Nave;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.utils.GameObject;

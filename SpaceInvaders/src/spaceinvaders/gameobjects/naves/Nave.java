@@ -1,11 +1,13 @@
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.naves;
 
+import spaceinvaders.gameobjects.tiro.TiroAmigo;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.Resolucao;
+import spaceinvaders.gameobjects.outros.GameOver;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
 import spaceinvaders.listenners.NaveEvent;

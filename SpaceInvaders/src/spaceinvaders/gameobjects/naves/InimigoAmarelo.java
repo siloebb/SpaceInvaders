@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.naves;
 
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
