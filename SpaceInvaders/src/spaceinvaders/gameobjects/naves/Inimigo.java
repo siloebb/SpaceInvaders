@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.Resolucao;
 import spaceinvaders.gameobjects.tiro.TiroInimigo;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
@@ -66,6 +67,12 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
 
     @Override
     public void update() {
+        //Verificando se já não aparece mais na tela
+        Resolucao resolucao = Resolucao.getInstance();
+        if(this.getY() > resolucao.getAlturaTela()){
+            this.selfDestroy();
+        }
+        
         movimentar();
         //Atira de tempos em tempos
         contadorDeTiro++;

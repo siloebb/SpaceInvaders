@@ -3,7 +3,8 @@ package spaceinvaders.utils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import spaceinvaders.telas.JanelaPrincipal;
 import spaceinvaders.utils.sprite.Background;
 import spaceinvaders.listenners.ColisaoListener;
@@ -13,10 +14,11 @@ import spaceinvaders.utils.sprite.Texto;
  *
  * @author Siloe
  */
-public class Jogo extends Thread{
+public class Jogo extends Thread {
 
     private static JanelaPrincipal janela;
     private boolean pause = false;
+    private boolean finalizarJogo = false;
     private int keyPressed = 0;
     private Colisao colisao;
 
@@ -36,10 +38,10 @@ public class Jogo extends Thread{
         listaBackground = new ArrayList<>();
         listaText = new ArrayList<>();
         colisao = new Colisao();
-        
-        if(janela == null){
+
+        if (janela == null) {
             janela = new JanelaPrincipal(listaGameObject, listaBackground, listaText, tamTela); //janela tem mais um parametro
-        }else{
+        } else {
             janela.alterarLista(listaGameObject, listaBackground, listaText);
         }
 
@@ -50,7 +52,7 @@ public class Jogo extends Thread{
 
         if (ka == null) {
             ka = new KeyAdapter() {
-                
+
                 @Override
                 public void keyPressed(KeyEvent ev) {
                     Jogo.this.keyPressed = ev.getKeyCode();
@@ -58,14 +60,13 @@ public class Jogo extends Thread{
 
                 @Override
                 public void keyReleased(KeyEvent e) {
-                   Jogo.this.keyPressed = 0;
+                    Jogo.this.keyPressed = 0;
                 }
-                
             };
 
             janela.addKeyListener(ka);
         }
-        
+
     }
 
     public void addGameObject(GameObject object) {
@@ -83,7 +84,7 @@ public class Jogo extends Thread{
     public void removeBackground(Background background) throws Exception {
         listaBackground.remove(background);
     }
-    
+
     public void addText(Texto texto) throws Exception {
         listaText.add(texto);
     }
@@ -91,44 +92,43 @@ public class Jogo extends Thread{
     public void removeText(Texto texto) throws Exception {
         listaText.remove(texto);
     }
-   
-    public synchronized void addColisaoListener(ColisaoListener c){
+
+    public synchronized void addColisaoListener(ColisaoListener c) {
         colisao.addColisaoListener(c);
     }
-    
-    public  synchronized void removeColisaoListener(ColisaoListener c){
+
+    public synchronized void removeColisaoListener(ColisaoListener c) {
         colisao.removeColisaoListener(c);
     }
-    
-     /**
+
+    /**
      * O que acontece à cada frame
      */
     private void enterFrame() {
-        janela.requestFocus();
-        janela.repaint();
-        
-
-        //Clonar a lista eh necessária para evitar erros de concorrência
+        //Clonar a lista eh necessário para evitar erros de concorrência
         ArrayList<GameObject> listaClone = new ArrayList<>();
         listaClone.addAll(listaGameObject);
-        
+
         for (GameObject gameObject : listaClone) {
             gameObject.update();
         }
         colisao.verificarColisao();
-        
+
         //Varre para ver se tem algum objeto para destruir
         for (GameObject gameObject : listaClone) {
-            if(gameObject.isFlagSelfDestroy()){
+            if (gameObject.isFlagSelfDestroy()) {
                 listaGameObject.remove(gameObject);
-                try{
+                try {
                     //ele tenta tirar do colisionador
-                    colisao.removeColisaoListener((ColisaoListener)gameObject);
-                }catch(Exception e){
+                    colisao.removeColisaoListener((ColisaoListener) gameObject);
+                } catch (Exception e) {
                     //Não faz nada
                 }
             }
         }
+
+        janela.requestFocus();
+        janela.repaint();
     }
 
     public void startGame() {
@@ -142,16 +142,18 @@ public class Jogo extends Thread{
         int contadorFPS = 0;
 
         //EnterFrame
-        while (true) {
+        while (!finalizarJogo) {
             if ((System.currentTimeMillis() - inicio) > delay && pause == false) {
-                //janela.repaint();
+
                 inicio = System.currentTimeMillis();
-                //GameObject.keyPressed = 0;
+
+                //pega o botão pressionado
                 GameObject.keyPressed = keyPressed;
+
+                //atulaiza e repinta o jogo
                 enterFrame();
 
                 contadorFPS++;
-                //keyPressed = 0;
             }
 
             //Mostrador do FPS
@@ -168,8 +170,6 @@ public class Jogo extends Thread{
         //super.run();
         this.startGame();
     }
-    
-    
 
     public boolean isPause() {
         return pause;
@@ -177,6 +177,15 @@ public class Jogo extends Thread{
 
     public void setPause(boolean pause) {
         this.pause = pause;
+    }
+
+    public void finalizarJogo() {
+        this.finalizarJogo = true;
+        try {
+            this.join(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
 
 }

@@ -1,7 +1,6 @@
 package spaceinvaders.telas;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class JanelaPrincipal extends JComponent {
 
     private String tituloDoJogo = "Space Invaders";
 
-    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList, 
+    public JanelaPrincipal(ArrayList<GameObject> gameObjectList, ArrayList<Background> backgroundList,
             ArrayList<Texto> texttList, int[] tamTela) throws HeadlessException {
         //super("Space Invaders");
         this.gameObjectList = gameObjectList;
@@ -44,7 +43,7 @@ public class JanelaPrincipal extends JComponent {
 
         frame.setSize(tamTela[0], tamTela[1]);//agora o tamanho é definido assim
         frame.setVisible(true);
-        frame.setResizable(false);
+        //frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(this);
@@ -55,6 +54,8 @@ public class JanelaPrincipal extends JComponent {
         this.gameObjectList = gameObjectList;
         this.backgroundList = backgroundList;
         this.texttList = textList;
+        
+        
     }
 
     @Override
@@ -80,7 +81,7 @@ public class JanelaPrincipal extends JComponent {
                 }
             }
         }
-        
+
         ArrayList<Texto> textListClone = new ArrayList<>();
         textListClone.addAll(texttList);
 

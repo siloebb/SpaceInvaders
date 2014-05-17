@@ -29,6 +29,7 @@ public class GameOver extends GameObject {
     public void update() {
         if (keyPressed == KeyEvent.VK_F2) {
 
+            resolucao.getSpaceInvaders().finalizarJogo();
             resolucao.getSpaceInvaders().iniciarJogo();
             this.selfDestroy();
         }

@@ -1,6 +1,5 @@
 package spaceinvaders;
 
-import java.awt.Color;
 import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +16,6 @@ import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.BackgroundImage;
 import spaceinvaders.utils.sprite.Sprite;
 import spaceinvaders.utils.sprite.SpriteAnimated;
-import spaceinvaders.utils.sprite.Texto;
 
 /**
  *
@@ -28,7 +26,8 @@ public class SpaceInvaders {
     /**
      * @param args the command line arguments
      */
-   Resolucao resolucao = Resolucao.getInstance();
+    Resolucao resolucao = Resolucao.getInstance();
+    Jogo jogo;
 
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
@@ -47,7 +46,7 @@ public class SpaceInvaders {
          * acoplamento mode on
          * isso não é elegante, mas por enquanto resolve o problema
          */
-        
+
         resolucao.definirResolucao(resolucao_escolhida);
         resolucao.setSpaceInvaders(sp);
         sp.iniciarMenu(sp);
@@ -109,7 +108,7 @@ public class SpaceInvaders {
     }
 
     public void iniciarJogo() {
-        Jogo jogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
+        jogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
 
         Nave nave = new Nave(jogo);
 
@@ -171,12 +170,15 @@ public class SpaceInvaders {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        GeradorDeEventos ge = new GeradorDeEventos( jogo, score);
+        GeradorDeEventos ge = new GeradorDeEventos(jogo, score);
         jogo.addGameObject(ge);
 
         //Iniciando Jogo
         jogo.start();
+    }
 
+    public void finalizarJogo() {
+        jogo.finalizarJogo();
     }
 
     public void mostrarAjuda() {
