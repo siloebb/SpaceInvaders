@@ -25,7 +25,7 @@ public class GeradorDeEventos extends GameObject {
 
     private Resolucao resolucao;
     private Jogo jogo;
-    private int time, tipo;
+    private int time, tipo, posicao;
     private InimigoFactory fabricaDeInimigo;
     private Score score;
     private Random random;
@@ -47,8 +47,8 @@ public class GeradorDeEventos extends GameObject {
             //60 frames == 1 segundo
 
             try {
-                int xRandom = random.nextInt(resolucao.getLarguraTela()-60);
-                Inimigo alien = fabricaDeInimigo.getInimigo(xRandom, 0, resolucao.getCaminho(), jogo, sorteio());
+                
+                Inimigo alien = fabricaDeInimigo.getInimigo(sorteioPosicao(), resolucao.getPosicaoInimigo()[0], resolucao.getCaminho(), jogo, sorteio());
                 
                 alien.addInimigoListenner(score);
                 this.jogo.addColisaoListener(alien);
@@ -68,5 +68,13 @@ public class GeradorDeEventos extends GameObject {
         tipo = random.nextInt(3) + 1;
 
         return tipo;
+    }
+    
+    public int sorteioPosicao() {
+
+        //int sorteio = (int) (Math.random() * 2);
+        posicao = random.nextInt(7) + 1;
+
+        return posicao;
     }
 }

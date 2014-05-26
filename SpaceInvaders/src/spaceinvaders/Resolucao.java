@@ -17,7 +17,7 @@ public class Resolucao {
 
     private static Resolucao resolucao;
     private static int resolucaoTela = 0;
-    private static int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo;
+    private static int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo, score;
     private static String caminho;
     private static SpaceInvaders spaceInvaders;
 
@@ -30,6 +30,7 @@ public class Resolucao {
          * possíveis coordenadas X que o inimigo criado pode assumir e apenas a 
          * ultima posição corresponde a coordenada Y
          */
+        score= new int [3];
         tamanhoTela = new int[2];
         posicaoTitulo = new int[2];
         posicaoBotoes = new int[4];
@@ -68,6 +69,10 @@ public class Resolucao {
         if (resolucaoTela == 1) {
             caminho = "src/assets_320x180/";
 
+            score[0]=10; //posicaox
+            score[1]=10; //posicaoy
+            score[2]=14; //tamanho da fonte
+            
             tamanhoTela[0] = 320;
             tamanhoTela[1] = 200; //tá um pouco maior pq na definição é considerada as bordas da janela e não somenta a area do jogo
 
@@ -75,22 +80,26 @@ public class Resolucao {
             posicaoTitulo[1] = 5;
 
             posicaoBotoes[0] = 90;
-            posicaoBotoes[1] = 90;
+            posicaoBotoes[1] = 80;
             posicaoBotoes[2] = posicaoBotoes[1] + 25;
             posicaoBotoes[3] = posicaoBotoes[2] + 25;
 
             posicaoNave[0] = 20;
-            posicaoNave[1] = 120;
+            posicaoNave[1] = 110;
 
             posicaoInimigo[8] = 20;
-            posicaoInimigo[0] = 10;
+            posicaoInimigo[0] = 30;
             for (int i = 1; i < 8; i++) {
                 posicaoInimigo[i] = posicaoInimigo[i] + 10;
             }
 
         } else {
             caminho = "src/assets_800x600/";
-
+            
+             score[0]=20; //posicaox
+            score[1]=30; //posicaoy
+            score[2]=30; //tamanho da fonte
+            
             tamanhoTela[0] = 800;
             tamanhoTela[1] = 600;
 
@@ -103,10 +112,10 @@ public class Resolucao {
             posicaoBotoes[3] = posicaoBotoes[2] + 90;
 
             posicaoNave[0] = 30;
-            posicaoNave[1] = 430;
+            posicaoNave[1] = 420;
 
             posicaoInimigo[8] = 20;
-            posicaoInimigo[0] = 10;
+            posicaoInimigo[0] = 40;
             for (int i = 1; i < 8; i++) {
                 posicaoInimigo[i] = posicaoInimigo[i] + 20;
             }
@@ -144,7 +153,11 @@ public class Resolucao {
     public int getAlturaTela() {
         return tamanhoTela[1];
     }
-
+    
+    public int[] getPosiScore() {
+        return score;
+    }
+    
     public SpaceInvaders getSpaceInvaders() {
         return spaceInvaders;
     }
