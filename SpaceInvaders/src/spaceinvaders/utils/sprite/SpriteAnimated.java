@@ -30,6 +30,11 @@ public class SpriteAnimated extends Sprite {
         spriteArray = Utils.dividirImagem(sprite, rows, columns);
         sprite = spriteArray[posicaoInicial];
     }
+    
+    public void carregarSprite(BufferedImage[] spriteArray) throws Exception {        
+        this.spriteArray = spriteArray;
+        sprite = spriteArray[posicaoInicial];
+    }
 
     /**
      *
@@ -104,6 +109,14 @@ public class SpriteAnimated extends Sprite {
 
     public void setPosicaoFinal(int posicaoFinal) {
         this.posicaoFinal = posicaoFinal;
+    }
+
+    public BufferedImage[] getSpriteArray() {
+        return spriteArray;
+    }
+
+    public void setSpriteArray(BufferedImage[] spriteArray) {
+        this.spriteArray = spriteArray;
     }
 
 }

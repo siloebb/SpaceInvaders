@@ -110,22 +110,32 @@ public class Jogo extends Thread {
         listaClone.addAll(listaGameObject);
 
         for (GameObject gameObject : listaClone) {
-            gameObject.update();
+            if (gameObject != null) {
+                gameObject.update();
+            }
         }
         colisao.verificarColisao();
 
         //Varre para ver se tem algum objeto para destruir
         for (GameObject gameObject : listaClone) {
-            if (gameObject.isFlagSelfDestroy()) {
-                listaGameObject.remove(gameObject);
-                try {
-                    //ele tenta tirar do colisionador
-                    colisao.removeColisaoListener((ColisaoListener) gameObject);
-                } catch (Exception e) {
-                    //Não faz nada
+            if (gameObject != null) {
+                if (gameObject.isFlagSelfDestroy()) {
+                    try {
+                        //ele tenta tirar do colisionador
+                        if (gameObject instanceof ColisaoListener) {
+                            colisao.removeColisaoListener((ColisaoListener) gameObject);
+                            System.out.println("Arrancando da colisão");
+                        }
+                    } catch (Exception e) {
+                        //Não faz nada
+                        e.printStackTrace();
+                    }
+                    listaGameObject.remove(gameObject);
+                    gameObject = null;
                 }
             }
         }
+        listaClone = null;
 
         janela.requestFocus();
         janela.repaint();
@@ -156,12 +166,12 @@ public class Jogo extends Thread {
                 contadorFPS++;
             }
 
-            //Mostrador do FPS
-            if ((System.currentTimeMillis() - inicioFPS) > delayFPS) {
-                System.out.println("FPS = " + contadorFPS);
-                inicioFPS = System.currentTimeMillis();
-                contadorFPS = 0;
-            }
+//            //Mostrador do FPS
+//            if ((System.currentTimeMillis() - inicioFPS) > delayFPS) {
+//                System.out.println("FPS = " + contadorFPS);
+//                inicioFPS = System.currentTimeMillis();
+//                contadorFPS = 0;
+//            }
         }
     }
 
@@ -185,7 +195,7 @@ public class Jogo extends Thread {
             this.join(1000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
     }
 
 }

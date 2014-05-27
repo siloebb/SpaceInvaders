@@ -33,6 +33,9 @@ public class TiroAmigo extends GameObject implements ColisaoListener {
     @Override
     public void update() {
         this.setY(this.getY() - 3);
+        if(this.getY() < -20){
+            this.selfDestroy();
+        }
     }
 
     @Override

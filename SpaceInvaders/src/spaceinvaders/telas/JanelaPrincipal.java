@@ -54,8 +54,7 @@ public class JanelaPrincipal extends JComponent {
         this.gameObjectList = gameObjectList;
         this.backgroundList = backgroundList;
         this.texttList = textList;
-        
-        
+
     }
 
     @Override
@@ -70,17 +69,22 @@ public class JanelaPrincipal extends JComponent {
                 background.print(g);
             }
         }
+        backgroundListClone = null;
 
         ArrayList<GameObject> gameObjectListClone = new ArrayList<>();
         gameObjectListClone.addAll(gameObjectList);
 
         if (gameObjectListClone != null) {
             for (GameObject go : gameObjectListClone) {
-                if (go.getSprite() != null) {
-                    go.getSprite().print(g);
+                if (go != null) {
+                    if (go.getSprite() != null) {
+                        go.getSprite().print(g);
+                    }
                 }
             }
         }
+
+        gameObjectListClone = null;
 
         ArrayList<Texto> textListClone = new ArrayList<>();
         textListClone.addAll(texttList);
@@ -92,6 +96,8 @@ public class JanelaPrincipal extends JComponent {
                 }
             }
         }
+
+        textListClone = null;
 
         //this.repaint();
     }

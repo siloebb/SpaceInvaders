@@ -1,5 +1,6 @@
 package spaceinvaders.criadores;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +17,11 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  */
 public class InimigoFactory {
 
-    Random random = new Random();
+    private Random random = new Random();
+
+    private BufferedImage[] spRosa;
+    private BufferedImage[] spAmarelo;
+    private BufferedImage[] spVerde;
 
     public Inimigo getInimigo(int posicaoX, int posicaoY, String caminho, Jogo jogo, int tipo) {
 
@@ -24,6 +29,18 @@ public class InimigoFactory {
             InimigoRosinha alien1;
             try {
                 alien1 = new InimigoRosinha(posicaoX, posicaoY, caminho, jogo);
+                SpriteAnimated spInimigo = new SpriteAnimated();
+                if (spRosa == null) {
+                    spInimigo.carregarSprite(caminho + "alien1.png", 1, 2);
+                    spRosa = spInimigo.getSpriteArray();
+                }
+                spInimigo.carregarSprite(spRosa);
+                spInimigo.setX(posicaoX);
+                spInimigo.setY(posicaoY);
+                //spInimigo.animate(0, 3, 15); 
+                spInimigo.animate(0, 1, 15);
+                alien1.setSprite(spInimigo);
+
                 return alien1;
             } catch (Exception ex) {
                 Logger.getLogger(InimigoFactory.class.getName()).log(Level.SEVERE, null, ex);
@@ -34,6 +51,18 @@ public class InimigoFactory {
             InimigoAmarelo alien2;
             try {
                 alien2 = new InimigoAmarelo(posicaoX, posicaoY, caminho, jogo);
+                SpriteAnimated spInimigo = new SpriteAnimated();
+                if (spAmarelo == null) {
+                    spInimigo.carregarSprite(caminho + "alien2.png", 1, 2);
+                    spAmarelo = spInimigo.getSpriteArray();
+                }
+                spInimigo.carregarSprite(spAmarelo);
+                spInimigo.setX(posicaoX);
+                spInimigo.setY(posicaoY);
+                //spInimigo.animate(0, 3, 15); 
+                spInimigo.animate(0, 1, 15);
+                alien2.setSprite(spInimigo);
+                
                 return alien2;
             } catch (Exception ex) {
                 Logger.getLogger(InimigoFactory.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,6 +73,17 @@ public class InimigoFactory {
             InimigoVerde alien3;
             try {
                 alien3 = new InimigoVerde(posicaoX, posicaoY, caminho, jogo);
+                SpriteAnimated spInimigo = new SpriteAnimated();
+                if (spVerde == null) {
+                    spInimigo.carregarSprite(caminho + "alien3.png", 1, 4);
+                    spVerde = spInimigo.getSpriteArray();
+                }
+                spInimigo.carregarSprite(spVerde);
+                spInimigo.setX(posicaoX);
+                spInimigo.setY(posicaoY);
+                spInimigo.animate(0, 3, 15);                
+                alien3.setSprite(spInimigo);
+
                 return alien3;
             } catch (Exception ex) {
                 Logger.getLogger(InimigoFactory.class.getName()).log(Level.SEVERE, null, ex);

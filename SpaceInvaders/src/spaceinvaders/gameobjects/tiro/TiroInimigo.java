@@ -5,6 +5,7 @@
  */
 
 package spaceinvaders.gameobjects.tiro;
+import spaceinvaders.Resolucao;
 import spaceinvaders.gameobjects.elemetos_fase.Explosao;
 import spaceinvaders.gameobjects.naves.Nave;
 import spaceinvaders.listenners.ColisaoEvent;
@@ -19,20 +20,23 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
 public class TiroInimigo extends GameObject implements ColisaoListener{
 
     private Jogo jogo;
+    private Resolucao resolucao;
+    
     public TiroInimigo(Jogo jogo) throws Exception {
-        SpriteAnimated spTiro = new SpriteAnimated();
-        spTiro.carregarSprite("src/assets_800x600/" + "tiro_inimigo.png", 1, 2);
-        spTiro.setX(50);
-        spTiro.setY(0);
-        spTiro.animate(0, 1, 15);
-        this.sprite = spTiro;
+        
         this.jogo = jogo;
+        
+        this.resolucao = Resolucao.getInstance();
     }
 
     @Override
     public void update() {
         super.update(); 
         this.setY(this.getY() + 2);
+        
+        if(this.getY() > resolucao.getAlturaTela()){
+            this.selfDestroy();
+        }
     }
     
     

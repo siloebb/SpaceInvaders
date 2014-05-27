@@ -5,6 +5,7 @@
  */
 package spaceinvaders.gameobjects.naves;
 
+import java.util.Random;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -17,17 +18,16 @@ public class InimigoRosinha extends Inimigo {
 
     private int sentido;
     private int cont = 0;
+    private final Random random;
 
     public InimigoRosinha(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
         this.sentido = 2;
-        SpriteAnimated spInimigo = new SpriteAnimated();
-        spInimigo.carregarSprite(caminho + "alien1.png", 1, 2);
-        spInimigo.setX(posicaoX);
-        spInimigo.setY(posicaoY);
-        spInimigo.animate(0, 1, 15);
-        this.sprite = spInimigo;
+        
+        
+        random = new Random();
+        this.sentido = random.nextInt(2)==1?-2:2;
     }
 
     @Override

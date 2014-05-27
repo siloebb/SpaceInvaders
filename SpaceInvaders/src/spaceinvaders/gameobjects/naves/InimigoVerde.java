@@ -5,6 +5,8 @@
  */
 package spaceinvaders.gameobjects.naves;
 
+import java.util.Random;
+import spaceinvaders.Resolucao;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -17,17 +19,17 @@ public class InimigoVerde extends Inimigo {
 
     private int sentido;
     private int cont = 0;
+    private int sentidoY = 2;
+    private Random random;
+    private Resolucao resolucao;
 
     public InimigoVerde(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
-
-        this.sentido = 2;
-        SpriteAnimated spInimigo = new SpriteAnimated();
-        spInimigo.carregarSprite(caminho + "alien3.png", 1, 4);
-        spInimigo.setX(posicaoX);
-        spInimigo.setY(posicaoY);
-        spInimigo.animate(0, 3, 15);
-        this.sprite = spInimigo;
+        
+        random = new Random();
+        resolucao = Resolucao.getInstance();
+        
+        this.sentido = random.nextInt(2)==1?-2:2;
     }
 
     @Override
@@ -40,9 +42,17 @@ public class InimigoVerde extends Inimigo {
     }
 
     @Override
-    public void movimentar() {
-        //setX(this.getX() + sentido);
-        setX(this.getX() + sentido);
+    public void movimentar() {        
+        this.setX(this.getX() + sentido);
+                
+        this.setY(this.getY() + sentidoY);
+        
+        if(this.getY() < 0){
+            sentidoY = 2;
+        }
+        if(this.getY() > (resolucao.getAlturaTela() * 0.6)){
+            sentidoY = -2;
+        }
     }
 
     @Override
@@ -51,18 +61,18 @@ public class InimigoVerde extends Inimigo {
         try {
             //verifica se conlide com uma das paredes
             if (c.getGameObject().getTag().equals("paredeDaEsquerda")) {
-                if (cont == 0) {
-                    setY(this.getY() + 60);
+                /*if (cont == 0) {
+                    //setY(this.getY() + 60);
                     cont = 5;
-                }
+                }*/
                 this.sentido = 2;
 
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
-                if (cont == 0) {
-                    setY(this.getY() + 60);
+                /*if (cont == 0) {
+                    //setY(this.getY() + 60);
                     cont = 5;
-                }
+                }*/
                 this.sentido = -2;
 
             }

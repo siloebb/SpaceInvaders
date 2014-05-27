@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import spaceinvaders.Resolucao;
+import spaceinvaders.criadores.TiroFactory;
 import spaceinvaders.gameobjects.tiro.TiroInimigo;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
@@ -28,6 +29,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
     private int tiroFrequencia = 120;
     private int contadorDeTiro = 0;
     private Collection<InimigoListener> listaInimigosListeners;
+    private TiroFactory tiroFactory;
     
     private int pontos = 10;
 
@@ -35,6 +37,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
         this.setTag("inimigo");
         this.jogo = jogo;
         listaInimigosListeners = new ArrayList<>();
+        tiroFactory = new TiroFactory();
     }
 
     public void addInimigoListenner(InimigoListener il) {
@@ -78,13 +81,13 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
         contadorDeTiro++;
         if (contadorDeTiro > tiroFrequencia) {
             //atira
-            TiroInimigo ta;
+            TiroInimigo ti;
             try {
-                ta = new TiroInimigo(jogo);
-                ta.setX(this.getX() + 50);
-                ta.setY(this.getY() + 20);
-                jogo.addGameObject(ta);
-                jogo.addColisaoListener(ta);
+                ti = tiroFactory.getTiroInimigo(jogo, this.getX() + 50, this.getY() + 20);
+//                ti.setX(this.getX() + 50);
+//                ti.setY(this.getY() + 20);
+                jogo.addGameObject(ti);
+                jogo.addColisaoListener(ti);
             } catch (Exception ex) {
                 Logger.getLogger(Nave.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -96,6 +99,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
     public void colidiu(ColisaoEvent c) {
         try {
             if (((GameObject) c.getGameObject()).getTag().equals("nave")) {
+                //fazer depois
                 System.out.println("Preciso matar a nave porque toquei nela");
             }
 
