@@ -19,15 +19,20 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
 public class TiroInimigo extends GameObject implements ColisaoListener{
 
     private Jogo jogo;
-    public TiroInimigo(Jogo jogo) throws Exception {
+    public TiroInimigo(Jogo jogo, int tipo) throws Exception {
         SpriteAnimated spTiro = new SpriteAnimated();
-        spTiro.carregarSprite("src/assets_800x600/" + "tiro_inimigo.png", 1, 2);
+        if(tipo==1){spTiro.carregarSprite("src/assets_800x600/" + "alien1_tiro.png", 1, 1);}
+        if(tipo==2){spTiro.carregarSprite("src/assets_800x600/" + "alien2_tiro.png", 1, 1);}
+        if(tipo==3){spTiro.carregarSprite("src/assets_800x600/" + "alien3_tiro.png", 1, 1);}
+        //spTiro.carregarSprite("src/assets_800x600/" + "tiro_inimigo.png", 1, 2);
         spTiro.setX(50);
         spTiro.setY(0);
-        spTiro.animate(0, 1, 15);
+        spTiro.animate(0, 0, 15);
         this.sprite = spTiro;
         this.jogo = jogo;
     }
+
+   
 
     @Override
     public void update() {
@@ -48,6 +53,7 @@ public class TiroInimigo extends GameObject implements ColisaoListener{
             this.selfDestroy();
         }
     }
+    
     
     
 }

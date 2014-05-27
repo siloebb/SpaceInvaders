@@ -17,7 +17,8 @@ public class InimigoRosinha extends Inimigo {
 
     private int sentido;
     private int cont = 0;
-
+    private int tipo = 1;
+    
     public InimigoRosinha(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
@@ -72,4 +73,9 @@ public class InimigoRosinha extends Inimigo {
         }
     }
 
+    @Override
+     public int getTipo(){
+    
+    return tipo;
+    }
 }

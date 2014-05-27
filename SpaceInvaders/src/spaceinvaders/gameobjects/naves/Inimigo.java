@@ -80,7 +80,7 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
             //atira
             TiroInimigo ta;
             try {
-                ta = new TiroInimigo(jogo);
+                ta = new TiroInimigo(jogo, getTipo());
                 ta.setX(this.getX() + 50);
                 ta.setY(this.getY() + 20);
                 jogo.addGameObject(ta);
@@ -129,4 +129,12 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
         disparaInimigoMorreu();        
     }
 
+    
+    
+     public int getTipo(){
+    
+    return 1;
+   
+    }
+    
 }
