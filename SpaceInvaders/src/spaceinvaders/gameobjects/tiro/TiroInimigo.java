@@ -29,6 +29,8 @@ public class TiroInimigo extends GameObject implements ColisaoListener{
         this.resolucao = Resolucao.getInstance();
     }
 
+   
+
     @Override
     public void update() {
         super.update(); 
@@ -52,6 +54,7 @@ public class TiroInimigo extends GameObject implements ColisaoListener{
             this.selfDestroy();
         }
     }
+    
     
     
 }

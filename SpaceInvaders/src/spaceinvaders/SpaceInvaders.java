@@ -163,7 +163,7 @@ public class SpaceInvaders {
         jogo.addColisaoListener(paredeDireita);
 
         //Adicionando score
-        Score score = new Score("Score: 0", 20, 30, 40);
+        Score score = new Score("Score: 0", resolucao.getPosiScore()[0], resolucao.getPosiScore()[1], resolucao.getPosiScore()[2]);
         try {
             jogo.addText(score);
         } catch (Exception ex) {

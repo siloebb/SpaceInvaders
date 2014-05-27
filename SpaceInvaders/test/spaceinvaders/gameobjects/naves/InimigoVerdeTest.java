@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 
-package spaceinvaders.gameobjects;
+package spaceinvaders.gameobjects.naves;
 
-import spaceinvaders.gameobjects.naves.InimigoRosinha;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,11 +16,11 @@ import spaceinvaders.listenners.ColisaoEvent;
 
 /**
  *
- * @author Siloe
+ * @author Jéssica Magally
  */
-public class InimigoRosinhaTest {
+public class InimigoVerdeTest {
     
-    public InimigoRosinhaTest() {
+    public InimigoVerdeTest() {
     }
     
     @BeforeClass
@@ -41,37 +40,37 @@ public class InimigoRosinhaTest {
     }
 
     /**
-     * Test of update method, of class InimigoRosinha.
+     * Test of update method, of class InimigoVerde.
      */
     @Test
     public void testUpdate() {
         System.out.println("update");
-        InimigoRosinha instance = null;
+        InimigoVerde instance = null;
         instance.update();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of movimentar method, of class InimigoRosinha.
+     * Test of movimentar method, of class InimigoVerde.
      */
     @Test
     public void testMovimentar() {
         System.out.println("movimentar");
-        InimigoRosinha instance = null;
+        InimigoVerde instance = null;
         instance.movimentar();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of colidiu method, of class InimigoRosinha.
+     * Test of colidiu method, of class InimigoVerde.
      */
     @Test
     public void testColidiu() {
         System.out.println("colidiu");
         ColisaoEvent c = null;
-        InimigoRosinha instance = null;
+        InimigoVerde instance = null;
         instance.colidiu(c);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

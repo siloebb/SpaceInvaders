@@ -23,6 +23,8 @@ public class InimigoVerde extends Inimigo {
     private Random random;
     private Resolucao resolucao;
 
+    private int tipo = 3;
+    
     public InimigoVerde(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
         
@@ -79,6 +81,13 @@ public class InimigoVerde extends Inimigo {
         } catch (Exception e) {
 
         }
+    }
+    
+    
+    @Override
+    public int getTipo(){
+    
+    return tipo;
     }
 
 }

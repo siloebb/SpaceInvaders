@@ -133,4 +133,12 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
         disparaInimigoMorreu();        
     }
 
+    
+    
+     public int getTipo(){
+    
+    return 1;
+   
+    }
+    
 }
