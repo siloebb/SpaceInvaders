@@ -124,7 +124,7 @@ public class Jogo extends Thread {
                         //ele tenta tirar do colisionador
                         if (gameObject instanceof ColisaoListener) {
                             colisao.removeColisaoListener((ColisaoListener) gameObject);
-                            System.out.println("Arrancando da colisão");
+                            //System.out.println("Arrancando da colisão");
                         }
                     } catch (Exception e) {
                         //Não faz nada

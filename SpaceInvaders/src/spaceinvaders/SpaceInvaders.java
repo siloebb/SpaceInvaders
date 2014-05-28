@@ -3,18 +3,14 @@ package spaceinvaders;
 import spaceinvaders.utils.Jogo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import spaceinvaders.gameobjects.botoes.BotaoAjuda;
-import spaceinvaders.gameobjects.botoes.BotaoIniciar;
-import spaceinvaders.gameobjects.botoes.BotaoSobre;
+import spaceinvaders.gameobjects.botoes.Menu;
 import spaceinvaders.gameobjects.elemetos_fase.GeradorDeEventos;
 import spaceinvaders.gameobjects.elemetos_fase.Life;
 import spaceinvaders.gameobjects.naves.Nave;
 import spaceinvaders.gameobjects.elemetos_fase.Parede;
 import spaceinvaders.gameobjects.elemetos_fase.Score;
 import spaceinvaders.telas.Tela1;
-import spaceinvaders.utils.GameObject;
 import spaceinvaders.utils.sprite.BackgroundImage;
-import spaceinvaders.utils.sprite.Sprite;
 import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
@@ -26,8 +22,10 @@ public class SpaceInvaders {
     /**
      * @param args the command line arguments
      */
-    Resolucao resolucao = Resolucao.getInstance();
-    Jogo jogo;
+    private Resolucao resolucao = Resolucao.getInstance();
+    private Jogo jogo;
+    private BackgroundImage bgMenu;
+    private Menu menu;
 
     public static void main(String[] args) {
         SpaceInvaders sp = new SpaceInvaders();
@@ -54,55 +52,21 @@ public class SpaceInvaders {
 
     public void iniciarMenu(SpaceInvaders sp) {
         Jogo menuJogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
-
-        GameObject btIniciar = new BotaoIniciar(sp);
-        GameObject btAjuda = new BotaoAjuda(sp);
-        GameObject btSobre = new BotaoSobre(sp);
-
-        Sprite spIniciar;
-        Sprite spAjuda;
-        Sprite spSobre;
-
-        spIniciar = new Sprite();
-        spAjuda = new Sprite();
-        spSobre = new Sprite();
-
+        
+        bgMenu = new BackgroundImage(resolucao.getCaminho() + "background_com_titulo.png");
         try {
-            spIniciar.carregarSprite(resolucao.getCaminho() + "button.png"); //ver comentários da classe Resolucao
-            spIniciar.setX(resolucao.getPosicaoBotoes()[0]);
-            spIniciar.setY(resolucao.getPosicaoBotoes()[1]);
-        } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        btIniciar.setSprite(spIniciar);
-        menuJogo.addGameObject(btIniciar);
-
-        BackgroundImage bg = new BackgroundImage(resolucao.getCaminho() + "background_com_titulo.png");
-        try {
-            menuJogo.addBackground(bg);
+            menuJogo.addBackground(bgMenu);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        menu = null;
         try {
-            spAjuda.carregarSprite(resolucao.getCaminho() + "button2.png");
-            spAjuda.setX(resolucao.getPosicaoBotoes()[0]);
-            spAjuda.setY(resolucao.getPosicaoBotoes()[2]);
+            menu = new Menu(sp);
         } catch (Exception ex) {
             Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
         }
-        btAjuda.setSprite(spAjuda);
-        menuJogo.addGameObject(btAjuda);
-
-        try {
-            spSobre.carregarSprite(resolucao.getCaminho() + "button3.png");
-            spSobre.setX(resolucao.getPosicaoBotoes()[0]);
-            spSobre.setY(resolucao.getPosicaoBotoes()[3]);
-        } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        btSobre.setSprite(spSobre);
-        menuJogo.addGameObject(btSobre);
+        menuJogo.addGameObject(menu);
 
         menuJogo.start();
     }
@@ -182,23 +146,14 @@ public class SpaceInvaders {
     }
 
     public void mostrarAjuda() {
-        Jogo ajudaJogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
-
-        BackgroundImage bg = new BackgroundImage(resolucao.getCaminho() + "background_com_menu_ajuda.png");
-        try {
-            ajudaJogo.addBackground(bg);
-        } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bgMenu.carregarSprite(resolucao.getCaminho() + "background_com_menu_ajuda.png");
     }
 
     public void mostrarSobre() {
-        Jogo sobreJogo = new Jogo(resolucao.getTamanhoTela()); //a resolução definida para a tela agora é parametro
-        BackgroundImage bg = new BackgroundImage(resolucao.getCaminho() + "background_com_titulo.png");
-        try {
-            sobreJogo.addBackground(bg);
-        } catch (Exception ex) {
-            Logger.getLogger(SpaceInvaders.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bgMenu.carregarSprite(resolucao.getCaminho() + "background_creditos.png");        
+    }
+    
+    public void mostrarBGNormal() {
+        bgMenu.carregarSprite(resolucao.getCaminho() + "background_com_titulo.png");        
     }
 }
