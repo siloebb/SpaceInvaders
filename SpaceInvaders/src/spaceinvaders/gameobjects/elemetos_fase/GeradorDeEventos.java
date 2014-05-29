@@ -29,6 +29,7 @@ public class GeradorDeEventos extends GameObject {
     private InimigoFactory fabricaDeInimigo;
     private Score score;
     private Random random;
+    private int tamanhoDaTela;
 
     public GeradorDeEventos( Jogo jogo, Score score) {
         fabricaDeInimigo = new InimigoFactory();
@@ -38,6 +39,8 @@ public class GeradorDeEventos extends GameObject {
         time = 0;
         tipo = 0;
         random = new Random();
+        
+        tamanhoDaTela = resolucao.getLarguraTela();
     }
 
     @Override
@@ -71,10 +74,6 @@ public class GeradorDeEventos extends GameObject {
     }
     
     public int sorteioPosicao() {
-
-        //int sorteio = (int) (Math.random() * 2);
-        posicao = random.nextInt(7) + 1;
-
-        return posicao;
+        return random.nextInt(tamanhoDaTela) - 60;
     }
 }

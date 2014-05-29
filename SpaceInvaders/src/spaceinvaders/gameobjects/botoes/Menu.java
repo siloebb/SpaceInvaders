@@ -56,8 +56,7 @@ public class Menu extends GameObject {
                 ((SpriteAnimated) this.getSprite()).setPosicaoAtual(opcao);
                 ((SpriteAnimated) this.getSprite()).setPosicaoInicial(opcao);
                 ((SpriteAnimated) this.getSprite()).setPosicaoFinal(opcao);
-                System.out.println("Teste " + opcao);
-
+                
                 //dah um delay de 15 frames para não sair pulando os botões
                 contadorDelay = 15;
             }
