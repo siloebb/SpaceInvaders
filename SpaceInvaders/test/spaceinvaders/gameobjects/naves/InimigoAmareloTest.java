@@ -22,7 +22,10 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
  * @author Jéssica Magally
  */
 public class InimigoAmareloTest {
+    
     private static JanelaPrincipal janela;
+    
+    
     public InimigoAmareloTest() {
     }
         
@@ -69,12 +72,11 @@ public class InimigoAmareloTest {
         InimigoAmarelo inimigoAmarelo = new InimigoAmarelo(0, 0, "src/assets_800x600/", j);
         inimigoAmarelo.movimentar();
         
-         Inimigo inimigo = new Inimigo(j) {
-        };
-        inimigo.setY(10);
-        inimigo.movimentar();
         
-        assertEquals(12,inimigo.getY());
+        inimigoAmarelo.setX(10);
+        inimigoAmarelo.movimentar();
+        
+        assertEquals(12,inimigoAmarelo.getX());
     }
     
 }
