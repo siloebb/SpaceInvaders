@@ -41,21 +41,26 @@ public class Colisao {
      c.colidiu(evento);
      }
      }*/
-    
     /**
      * Verifica a colisão de todos os cadastrados e dispara o evento;
      */
     public void verificarColisao() {
-        Collection<ColisaoListener> colisaoClone = new ArrayList<>();
+        ArrayList<ColisaoListener> colisaoClone = new ArrayList<>();
         colisaoClone.addAll(listaColisao);
-        for (ColisaoListener c1 : colisaoClone) {
+        ColisaoIterator ci = new ColisaoIterator(colisaoClone);
+        ColisaoIterator cii = new ColisaoIterator(colisaoClone);
+        //implementando iterator
+        while (ci.hasNext()) {
 
+            ColisaoListener c1 = ci.next();
+
+            
             for (ColisaoListener c2 : colisaoClone) {
                 if (!c1.equals(c2)) {
                     if (c1.getX() + c1.getWidth() > c2.getX() && c1.getX() < c2.getX() + c2.getWidth()
-                            && c1.getY() + c1.getHeight() > c2.getY() 
+                            && c1.getY() + c1.getHeight() > c2.getY()
                             && c1.getY() < c2.getY() + c2.getHeight()) {
-                        
+
                         ColisaoEvent evento = new ColisaoEvent(this, (GameObject) c2);
                         c1.colidiu(evento);
                     }
@@ -63,4 +68,5 @@ public class Colisao {
             }
         }
     }
+
 }
