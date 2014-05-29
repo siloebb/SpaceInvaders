@@ -13,24 +13,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import spaceinvaders.listenners.ColisaoEvent;
+import spaceinvaders.telas.JanelaPrincipal;
+import spaceinvaders.utils.Jogo;
+import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
  *
  * @author Jéssica Magally
  */
 public class InimigoAmareloTest {
-    
+    private static JanelaPrincipal janela;
     public InimigoAmareloTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+        
     @Before
     public void setUp() {
     }
@@ -55,25 +50,31 @@ public class InimigoAmareloTest {
      * Test of movimentar method, of class InimigoAmarelo.
      */
     @Test
-    public void testMovimentar() {
+    public void testMovimentar() throws Exception {
         System.out.println("movimentar");
-        InimigoAmarelo instance = null;
-        instance.movimentar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of colidiu method, of class InimigoAmarelo.
-     */
-    @Test
-    public void testColidiu() {
-        System.out.println("colidiu");
-        ColisaoEvent c = null;
-        InimigoAmarelo instance = null;
-        instance.colidiu(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /**
+         * Tiver que criar essa coisas antes pra poder instanciar um inimigo pra o teste, mas tá dando erro
+         */
+        Jogo j = new Jogo(tamTela[0] = 800, tamTela[1] = 600);
+        if (janela == null) {
+            janela = new JanelaPrincipal(listaGameObject, listaBackground, listaText, tamTela); //janela tem mais um parametro
+        } else {
+            janela.alterarLista(listaGameObject, listaBackground, listaText);
+        }
+        janela.requestFocus();
+        
+        /*
+        * Testa se quando o inimigo movimenta muda a posição em 2
+        */
+        InimigoAmarelo inimigoAmarelo = new InimigoAmarelo(0, 0, "src/assets_800x600/", j);
+        inimigoAmarelo.movimentar();
+        
+         Inimigo inimigo = new Inimigo(j) {
+        };
+        inimigo.setY(10);
+        inimigo.movimentar();
+        
+        assertEquals(12,inimigo.getY());
     }
     
 }
