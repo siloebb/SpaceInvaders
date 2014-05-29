@@ -10,9 +10,10 @@ import spaceinvaders.utils.Utils;
  *
  * @author Siloe
  */
-public class BackgroundImage extends Background{
+public class BackgroundImage extends Background implements Printable{
     
-    private BufferedImage sprite;
+    private Sprite sprite;
+    //private BufferedImage sprite;
 
     public BackgroundImage(int color) {
         super(color);
@@ -27,13 +28,15 @@ public class BackgroundImage extends Background{
     }
     
     public void carregarSprite(String file){
-        sprite = Utils.carregarImagem(file);
+        sprite = new Sprite();
+        sprite.carregarSprite(file);
     }
 
     @Override
     public void print(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(sprite, 0, 0, null);        
+        //g2d.drawImage(sprite, 0, 0, null);
+        sprite.print(g);
     }
     
 }

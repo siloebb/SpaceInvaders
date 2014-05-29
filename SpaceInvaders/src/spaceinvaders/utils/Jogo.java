@@ -66,6 +66,7 @@ public class Jogo extends Thread {
 
             janela.addKeyListener(ka);
         }
+        System.gc();
 
     }
 
@@ -191,11 +192,6 @@ public class Jogo extends Thread {
 
     public void finalizarJogo() {
         this.finalizarJogo = true;
-        try {
-            this.join(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Jogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }
