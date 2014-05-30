@@ -29,10 +29,12 @@ public class Nave extends GameObject implements ColisaoListener {
     private Collection<NaveListener> naveListeners;
     private Jogo jogo;
     private int velocidade = 5;
+    private Resolucao resolucao;
 
     public Nave(Jogo jogo) {
         naveListeners = new ArrayList<NaveListener>();
         this.jogo = jogo;
+        resolucao = Resolucao.getInstance();
     }
 
     public void perderLife() {
@@ -99,7 +101,7 @@ public class Nave extends GameObject implements ColisaoListener {
             TiroAmigo ta;
             try {
                 ta = new TiroAmigo(jogo);
-                ta.setX(this.getX() + 50);
+                ta.setX(this.getX() + resolucao.getDistanciaTiroDaNave());
                 ta.setY(this.getY() + 20);
                 jogo.addGameObject(ta);
                 jogo.addColisaoListener(ta);

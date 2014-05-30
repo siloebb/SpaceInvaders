@@ -20,7 +20,11 @@ public class Resolucao {
     private static int[] tamanhoTela, posicaoTitulo, posicaoBotoes, posicaoNave, posicaoInimigo, score;
     private static String caminho;
     private static SpaceInvaders spaceInvaders;
+    private static int distanciaTiroDaNave;
+    private static int velocidadeInimigo;
+    private static int posicaoLife;
 
+    
     private Resolucao() {
 
         /*
@@ -92,6 +96,10 @@ public class Resolucao {
             for (int i = 1; i < 8; i++) {
                 posicaoInimigo[i] = posicaoInimigo[i] + 10;
             }
+            
+            distanciaTiroDaNave = 20;
+            velocidadeInimigo = 1;
+            posicaoLife = 200;
 
         } else {
             caminho = "src/assets_800x600/";
@@ -119,6 +127,10 @@ public class Resolucao {
             for (int i = 1; i < 8; i++) {
                 posicaoInimigo[i] = posicaoInimigo[i] + 20;
             }
+            
+            distanciaTiroDaNave = 50;
+            velocidadeInimigo = 2;
+            posicaoLife = 540;
         }
     }
 
@@ -164,6 +176,30 @@ public class Resolucao {
 
     public void setSpaceInvaders(SpaceInvaders spaceInvaders) {
         Resolucao.spaceInvaders = spaceInvaders;
+    }
+    
+    public int getDistanciaTiroDaNave() {
+        return distanciaTiroDaNave;
+    }
+
+    public void setDistanciaTiroDaNave(int distanciaTiroDaNave) {
+        Resolucao.distanciaTiroDaNave = distanciaTiroDaNave;
+    }
+
+    public int getVelocidadeInimigo() {
+        return velocidadeInimigo;
+    }
+
+    public void setVelocidadeInimigo(int velocidadeInimigo) {
+        Resolucao.velocidadeInimigo = velocidadeInimigo;
+    }
+
+    public int getPosicaoLife() {
+        return posicaoLife;
+    }
+
+    public void setPosicaoLife(int posicaoLife) {
+        Resolucao.posicaoLife = posicaoLife;
     }
 
 }

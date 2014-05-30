@@ -6,7 +6,6 @@ import spaceinvaders.Resolucao;
 import spaceinvaders.listenners.NaveEvent;
 import spaceinvaders.listenners.NaveListener;
 import spaceinvaders.utils.GameObject;
-import spaceinvaders.utils.sprite.Sprite;
 import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
@@ -24,7 +23,7 @@ public class Life extends GameObject implements NaveListener {
         } catch (Exception ex) {
             Logger.getLogger(Life.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sprite.setX(540);//resolucao.getPosicaoNave()[0]);
+        sprite.setX(Resolucao.getInstance().getPosicaoLife());//resolucao.getPosicaoNave()[0]);
         sprite.setY(10);//resolucao.getPosicaoNave()[1]);
         sprite.setPosicaoAtual(0);
 

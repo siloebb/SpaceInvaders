@@ -5,6 +5,7 @@
  */
 package spaceinvaders.gameobjects.tiro;
 
+import spaceinvaders.Resolucao;
 import spaceinvaders.gameobjects.elemetos_fase.Explosao;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.listenners.ColisaoListener;
@@ -19,10 +20,12 @@ import spaceinvaders.utils.sprite.SpriteAnimated;
 public class TiroAmigo extends GameObject implements ColisaoListener {
 
     private Jogo jogo;
+    private Resolucao resolucao;
 
     public TiroAmigo(Jogo jogo) throws Exception {
+        resolucao = Resolucao.getInstance();
         SpriteAnimated spTiro = new SpriteAnimated();
-        spTiro.carregarSprite("src/assets_800x600/" + "tiro_amigo.png", 1, 2);
+        spTiro.carregarSprite(resolucao.getCaminho() + "tiro_amigo.png", 1, 2);
         spTiro.setX(50);
         spTiro.setY(0);
         spTiro.animate(0, 1, 15);

@@ -3,6 +3,7 @@ package spaceinvaders.criadores;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import spaceinvaders.Resolucao;
 import spaceinvaders.gameobjects.tiro.TiroAmigo;
 import spaceinvaders.gameobjects.tiro.TiroInimigo;
 import spaceinvaders.utils.Jogo;
@@ -16,14 +17,16 @@ public class TiroFactory {
 
     private BufferedImage[] biAmigo;
     private BufferedImage[] biInimigo;
+    private Resolucao resolucao;
 
     public TiroInimigo getTiroInimigo(Jogo jogo, int x, int y) {
         try {
             TiroInimigo tiroInimigo = new TiroInimigo(jogo);
+            resolucao = Resolucao.getInstance();
             
             SpriteAnimated spTiro = new SpriteAnimated();
             if(biInimigo == null){
-                spTiro.carregarSprite("src/assets_800x600/" + "tiro_inimigo.png", 1, 2);
+                spTiro.carregarSprite(resolucao.getCaminho() + "tiro_inimigo.png", 1, 2);
                 biInimigo = spTiro.getSpriteArray();
             }else{
                 spTiro.carregarSprite(biInimigo);

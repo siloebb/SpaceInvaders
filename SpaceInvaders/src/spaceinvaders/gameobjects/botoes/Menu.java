@@ -25,7 +25,7 @@ public class Menu extends GameObject {
         ;
 
         SpriteAnimated spMenu = new SpriteAnimated();
-        spMenu.carregarSprite("src/assets_800x600/" + "menu.png", 4, 1);
+        spMenu.carregarSprite(resolucao.getCaminho() + "menu.png", 4, 1);
         spMenu.setX(resolucao.getPosicaoBotoes()[0]);
         spMenu.setY(resolucao.getPosicaoBotoes()[1]);
 

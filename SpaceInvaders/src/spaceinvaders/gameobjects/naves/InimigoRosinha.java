@@ -8,7 +8,6 @@ package spaceinvaders.gameobjects.naves;
 import java.util.Random;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
-import spaceinvaders.utils.sprite.SpriteAnimated;
 
 /**
  *
@@ -25,10 +24,10 @@ public class InimigoRosinha extends Inimigo {
     public InimigoRosinha(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
-        this.sentido = 2;
+        this.sentido = getVelocidadeInimigo();
 
         random = new Random();
-        this.sentido = random.nextInt(2) == 1 ? -2 : 2;
+        this.sentido = random.nextInt(2) == 1 ? -getVelocidadeInimigo() : getVelocidadeInimigo();
     }
 
     @Override
@@ -57,7 +56,7 @@ public class InimigoRosinha extends Inimigo {
                     //setY(this.getY() + 60);
                     cont = 5;
                 }
-                this.sentido = 2;
+                this.sentido = getVelocidadeInimigo();
 
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
@@ -65,7 +64,7 @@ public class InimigoRosinha extends Inimigo {
                     //setY(this.getY() + 60);
                     cont = 5;
                 }
-                this.sentido = -2;
+                this.sentido = -getVelocidadeInimigo();
 
             }
         } catch (Exception e) {

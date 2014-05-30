@@ -31,7 +31,7 @@ public class InimigoVerde extends Inimigo {
         random = new Random();
         resolucao = Resolucao.getInstance();
         
-        this.sentido = random.nextInt(2)==1?-2:2;
+        this.sentido = random.nextInt(2)==1?-getVelocidadeInimigo():getVelocidadeInimigo();
     }
 
     @Override
@@ -50,10 +50,10 @@ public class InimigoVerde extends Inimigo {
         this.setY(this.getY() + sentidoY);
         
         if(this.getY() < 0){
-            sentidoY = 2;
+            sentidoY = getVelocidadeInimigo();
         }
         if(this.getY() > (resolucao.getAlturaTela() * 0.6)){
-            sentidoY = -2;
+            sentidoY = -getVelocidadeInimigo();
         }
     }
 
@@ -67,7 +67,7 @@ public class InimigoVerde extends Inimigo {
                     //setY(this.getY() + 60);
                     cont = 5;
                 }*/
-                this.sentido = 2;
+                this.sentido = getVelocidadeInimigo();
 
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
@@ -75,7 +75,7 @@ public class InimigoVerde extends Inimigo {
                     //setY(this.getY() + 60);
                     cont = 5;
                 }*/
-                this.sentido = -2;
+                this.sentido = -getVelocidadeInimigo();
 
             }
         } catch (Exception e) {

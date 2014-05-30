@@ -30,7 +30,9 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
     private int contadorDeTiro = 0;
     private Collection<InimigoListener> listaInimigosListeners;
     private TiroFactory tiroFactory;
-    
+    private int velocidadeInimigo;
+    private Resolucao resolucao;
+
     private int pontos = 10;
 
     public Inimigo(Jogo jogo) {
@@ -38,6 +40,8 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
         this.jogo = jogo;
         listaInimigosListeners = new ArrayList<>();
         tiroFactory = new TiroFactory();
+        resolucao = Resolucao.getInstance();
+        velocidadeInimigo = resolucao.getVelocidadeInimigo();
     }
 
     public void addInimigoListenner(InimigoListener il) {
@@ -55,8 +59,8 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
             }
         }
     }
-    
-    public void disparaInimigoMorreu(){
+
+    public void disparaInimigoMorreu() {
         for (InimigoListener il : listaInimigosListeners) {
             InimigoEvent ev = new InimigoEvent(this);
             ev.setPontos(pontos);
@@ -72,10 +76,10 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
     public void update() {
         //Verificando se já não aparece mais na tela
         Resolucao resolucao = Resolucao.getInstance();
-        if(this.getY() > resolucao.getAlturaTela()){
+        if (this.getY() > resolucao.getAlturaTela()) {
             this.selfDestroy();
         }
-        
+
         movimentar();
         //Atira de tempos em tempos
         contadorDeTiro++;
@@ -123,22 +127,34 @@ public abstract class Inimigo extends GameObject implements ColisaoListener {
     public void setPontos(int pontos) {
         this.pontos = pontos;
     }
-    
+
     /**
      * Usar este metódo para destroir, se não não tem pontos
      */
     @Override
-    public void selfDestroy(){
+    public void selfDestroy() {
         super.selfDestroy();
-        disparaInimigoMorreu();        
+        disparaInimigoMorreu();
     }
 
-    
-    
-     public int getTipo(){
-    
-    return 1;
-   
+    public int getTipo() {
+        return 1;
     }
-    
+
+    public int getVelocidadeInimigo() {
+        return velocidadeInimigo;
+    }
+
+    public void setVelocidadeInimigo(int velocidadeInimigo) {
+        this.velocidadeInimigo = velocidadeInimigo;
+    }
+
+    public Resolucao getResolucao() {
+        return resolucao;
+    }
+
+    public void setResolucao(Resolucao resolucao) {
+        this.resolucao = resolucao;
+    }
+
 }

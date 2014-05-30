@@ -5,6 +5,7 @@
  */
 package spaceinvaders.gameobjects.naves;
 
+import spaceinvaders.Resolucao;
 import spaceinvaders.listenners.ColisaoEvent;
 import spaceinvaders.utils.Jogo;
 import spaceinvaders.utils.sprite.SpriteAnimated;
@@ -18,11 +19,12 @@ public class InimigoAmarelo extends Inimigo {
     private int sentido;
     private int cont = 0;
     private int tipo = 2;
+    
 
     public InimigoAmarelo(int posicaoX, int posicaoY, String caminho, Jogo jogo) throws Exception {
         super(jogo);
 
-        this.sentido = 2;
+        this.sentido = getVelocidadeInimigo();
         SpriteAnimated spInimigo = new SpriteAnimated();
         spInimigo.carregarSprite(caminho + "alien2.png", 1, 2);
         spInimigo.setX(posicaoX);
@@ -55,7 +57,7 @@ public class InimigoAmarelo extends Inimigo {
                     setY(this.getY() + 60);
                     cont = 5;
                 }
-                this.sentido = 2;
+                this.sentido = getVelocidadeInimigo();
 
             }
             if (c.getGameObject().getTag().equals("paredeDaDireita")) {
@@ -63,7 +65,7 @@ public class InimigoAmarelo extends Inimigo {
                     setY(this.getY() + 60);
                     cont = 5;
                 }
-                this.sentido = -2;
+                this.sentido = -getVelocidadeInimigo();
 
             }
         } catch (Exception e) {
